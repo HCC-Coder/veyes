@@ -2,10 +2,10 @@ let fs = require('fs')
 let $ = require('jquery')
 
 fs.readdir('resources/videos', function(err, items) {
-	for (let i in items) {
-		let item_html = `<div> ${items[i]} </div>`
-		$('#files').append(item_html)
-	}
+    if ($.inArray(items[i].split('.').pop(), ['mov', 'mp4']) == 1) {
+  		let item_html = `<div> ${items[i]} </div>`
+  		$('body').append(item_html)
+    }
 })
 
 $(function(){
