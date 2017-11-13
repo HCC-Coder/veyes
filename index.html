@@ -3,12 +3,68 @@
   <head>
     <meta charset="UTF-8">
     <title>Player</title>
-	<link rel="stylesheet" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="semantic/dist/semantic.min.css">
   </head>
   <body>
-  	<select id="show-screen" class="ui dropdown"></select>
-	<button id="btn-start" class="ui primary button">Start</button>
-    <h1>Files</h1>
+    <div id="head" class="ui text container">
+      <select id="show-screen" class="ui dropdown"></select>
+      <button id="btn-start" class="ui primary button">Start</button>
+
+    </div> <!-- head -->
+
+    <div class="ui hidden divider"></div>
+    <div class="ui text container">
+      <div class="ui grid">
+        <div class="six wide column">
+          <div id="files" class="ui segment">
+            <h1>Files</h1>
+          </div>
+        </div>
+        <div class="six wide column">
+          <div id="playlist" class="ui segment">
+            <h1>Playlist</h1>
+          </div>
+        </div>
+        <div class="four wide column">
+
+          <div class="ui icon buttons">
+            <button class="ui button">
+              <i class="play icon"></i>
+            </button>
+            <button class="ui button">
+              <i class="stop icon"></i>
+            </button> <!-- ui icon buttons -->
+          </div>
+          <div class="ui hidden divider"></div>
+
+          <div class="ui icon buttons">
+            <button class="ui button">
+              <i class="step backward icon"></i>
+            </button>
+            <button class="ui button">
+              <i class="step forward icon"></i>
+            </button>
+          </div> <!-- ui icon buttons -->
+
+          
+          <div class="ui mini disabled labeled input">
+            <label class="ui label">Current</label>
+            <input type="text" value="00:00" />
+          </div>
+          <div class="ui mini labeled input">
+            <label class="ui label">Go to</label>
+            <input type="text" value="00:00" />
+          </div>
+
+
+          <div class="ui hidden divider"></div>
+          <button class="ui icon button">
+            <i class="refresh icon"></i>
+          </button>
+
+        </div>
+      </div>
+    </div>
 
     <script src="index.js"></script>
   </body>

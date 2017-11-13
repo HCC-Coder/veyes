@@ -4,7 +4,7 @@ let $ = require('jquery')
 fs.readdir('resources/videos', function(err, items) {
 	for (let i in items) {
 		let item_html = `<div> ${items[i]} </div>`
-		$('body').append(item_html)
+		$('#files').append(item_html)
 	}
 })
 
