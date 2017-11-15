@@ -4,26 +4,47 @@
     <meta charset="UTF-8">
     <title>Player</title>
     <link rel="stylesheet" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="style/utility.css">
   </head>
   <body>
-    <div id="head" class="ui text container">
-      <select id="show-screen" class="ui dropdown"></select>
+    <div id="head" class="ui fluid container">
+      <select id="show-screen" class="ui pull-right dropdown"></select>
       <button id="btn-start" class="ui primary button">Start</button>
 
     </div> <!-- head -->
 
     <div class="ui hidden divider"></div>
-    <div class="ui text container">
-      <div class="ui grid">
+    <div class="ui fluid container">
+      <div class="ui compact grid">
         <div class="six wide column">
-          <div id="files" class="ui segment">
-            <h1>Files</h1>
-          </div>
+          <h2 class="ui header">Files</h2>
+          <table class="ui very compact table">
+            <thead>
+              <tr>
+                <th>Filename</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="files">
+              
+            </tbody>
+          </table>
         </div>
         <div class="six wide column">
-          <div id="playlist" class="ui segment">
-            <h1>Playlist</h1>
-          </div>
+          <h2 class="ui header">Playlist</h2>
+          <table class="ui compact table">
+            <thead>
+              <tr>
+                <th>Seq</th>
+                <th>Filename</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="playlist">
+
+            </tbody>
+          </table>
+
         </div>
         <div class="four wide column">
 
