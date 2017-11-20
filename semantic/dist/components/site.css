@@ -52,19 +52,19 @@ h5 {
 }
 h1 {
   min-height: 1rem;
-  font-size: 1.28571429rem;
+  font-size: 2rem;
 }
 h2 {
-  font-size: 0.85714286rem;
+  font-size: 1.71428571rem;
 }
 h3 {
-  font-size: 0.78571429rem;
+  font-size: 1.28571429rem;
 }
 h4 {
-  font-size: 0.71428571rem;
+  font-size: 1.07142857rem;
 }
 h5 {
-  font-size: 0.64285714rem;
+  font-size: 1rem;
 }
 h1:first-child,
 h2:first-child,

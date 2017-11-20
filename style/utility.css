@@ -1,3 +1,16 @@
 .pull-right{
-	float: right;
+    float: right;
+}
+.pull-left{
+	float: left;
+}
+.clear-fix{
+    clear: both;
+}
+.d-inblock{
+    display: inline-block;
+    vertical-align: baseline;
+}
+.ml-2{
+    margin-left: 4px !important;
 }

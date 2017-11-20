@@ -64,6 +64,7 @@ function init_files()
         <td></td>
       </tr>`
       $('#playlist').append(item_html)
+      console.log(file_list)
     })
   })
 }

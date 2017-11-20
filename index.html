@@ -16,19 +16,29 @@
     </div> <!-- head -->
 
     <div class="ui hidden divider"></div>
-    <div class="ui fluid container">
+    <div class="ui container">
       <div class="ui compact grid">
-        <div class="seven wide column">
-          <h2 class="ui header">
-            <button class="ui mini pull-right button">edit</button>
+
+        <!-- PLAYLIST COLUMN -->
+        <div class="six wide column">
+          <h2 class="ui header d-inblock">
             Playlist
           </h2>
+          <select class="ui dropdown d-inblock ml-2">
+            <option value="0">default</option>
+          </select>
+          <button class="ui button d-inblock ml-2">Load</button>
+          <div class="ui divider"></div>
+          <h3 class="ui header">
+            <span>Default playlist</span>
+            <button class="ui mini pull-right button">edit</button>
+          </h3>
           <table class="ui compact table">
             <thead>
               <tr>
                 <th>Seq</th>
-                <th>Filename</th>
-                <th>Action</th>
+                <th>Name</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="playlist">
@@ -41,8 +51,8 @@
           <table class="ui very compact table">
             <thead>
               <tr>
-                <th>Filename</th>
-                <th>Action</th>
+                <th>Name</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="files">
@@ -50,9 +60,13 @@
             </tbody>
           </table>
         </div>
+        <!-- PLAYLIST COLUMN -->
+        <!-- CONTROL COLUMN -->
         <div class="five wide column">
 
-          <h2 class="ui header">Now playing controls</h2>
+          <h2 class="ui header">Now playing</h2>
+          <div class="ui divider"></div>
+          <h3 class="ui header">Controls</h3>
           <div class="ui segment">
             
             <div class="ui icon fluid huge buttons">
@@ -97,26 +111,16 @@
                 </div>
               </div>
             </div>
-
-
             <div class="ui hidden divider"></div>
-
           </div>
-
         </div>
-        <div class="four wide column">
+        <!-- CONTROL COLUMN -->
 
-          <div class="ui form">
-            <div class="two fields">
-              <div class="twelve wide field">
-                <select id="show-screen" class="ui fluid dropdown"></select>
-              </div>
-              <div class="four wide field">
-                <button id="btn-detect" class="ui secondary fluid button">Detect</button>
-              </div>
-            </div>
-          </div>
-          <button id="btn-start" class="ui primary button">Start</button>
+        <div class="five wide column">
+
+          <select id="show-screen" class="ui fluid dropdown"></select>
+          <button id="btn-detect" class="ui secondary fluid button">Detect</button>
+          <button id="btn-start" class="ui primary fluid button">Start</button>
 
         </div>
       </div>
