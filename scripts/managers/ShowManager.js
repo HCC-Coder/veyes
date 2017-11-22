@@ -36,7 +36,7 @@ class ShowManager{
 
     $('#show-screen').html('');
     for (let i in this._displays) {
-      let option_html = `<option> ${parseInt(i)+1}. ${this._displays[i].size.height} </option>`
+      let option_html = `<option value="${i}"> ${parseInt(i)+1}. ${this._displays[i].size.width} x ${this._displays[i].size.height} </option>`
       $('#show-screen').append(option_html)
     }
     console.log(this._displays);
@@ -47,6 +47,11 @@ class ShowManager{
     var that = this;
     $('#btn-detect').click(function(){
       that.detect_screen()
+    })
+
+    $('#show-screen').change(function(){
+      that._choose_screen_id = $(this).val()
+      that.resize_preview()
     })
   }
 }

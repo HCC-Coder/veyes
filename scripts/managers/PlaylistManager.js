@@ -26,7 +26,9 @@ class PlaylistManager{
   {
     let files = fs.readdirSync('playlists');
     for(var i in files) {
-      this._items[files[i]] = new Playlist(jsonfile.readFileSync('playlists/' + files[i]));
+      if (files[i] != '.gitignore') {
+        this._items[files[i]] = new Playlist(jsonfile.readFileSync('playlists/' + files[i]));
+      }
     }
   }
 
