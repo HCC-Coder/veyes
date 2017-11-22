@@ -1,34 +1,31 @@
 
-const Playlist = require('./scripts/managers/Playlist.js')
+const Playlist = require('./scripts/models/Playlist.js');
+const PlaylistManager = require('./scripts/managers/PlaylistManager.js');
+const FilelistManager = require('./scripts/managers/FilelistManager.js');
+const ControllerManager = require('./scripts/managers/ControllerManager.js');
+const ShowManager = require('./scripts/managers/ShowManager.js');
 const fs = require('fs');
 const $ = require('jquery');
-const electron = require('electron');
 const jQuery = $;
 require('./semantic/dist/semantic.min.js');
 
-var file_list = new Playlist();
-
+var file_list = new Playlist([]);
+var pm;
+var cm;
+var sm;
 $(function(){
   init_files()
   init_semantic()
-  init_show()
+  init_playlist()
 })
 
-function init_show()
+function init_playlist()
 {
-  $('#btn-detect').click(function(){
-
-    const eScreen = electron.screen
-    let displays = eScreen.getAllDisplays()
-
-    $('#show-screen').html('');
-    for (let i in displays) {
-      let option_html = `<option> ${parseInt(i)+1}. ${displays[i].size.height} </option>`
-      $('#show-screen').append(option_html)
-    }
-    console.log(displays);
-  })
+  pm = new PlaylistManager()
+  cm = new ControllerManager(pm.current_playlist)
+  sm = new ShowManager()
 }
+
 
 function init_semantic()
 {
@@ -38,33 +35,10 @@ function init_semantic()
 
 function init_files()
 {
-  fs.readdir('resources/videos', function(err, items) {
-    for(var i in items)
-    {
-      if ($.inArray(items[i].split('.').pop(), ['mov', 'mp4']) == 1) {
-        file_list.add_video(items[i]);
-        let item_html = `<tr>
-          <td> ${items[i]} </td>
-          <td>
-            <button class="ui mini icon item button" data-file="${items[i]}">
-              <i class="upload icon"></i>
-            </button>
-          </td>
-        </tr>`
-        $('#files').append(item_html)
-      }
-    }
-
-    $('#files .item.button').click(function(){
-      console.log(file_list)
-      $this = $(this);
-      let item_html = `<tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>`
-      $('#playlist').append(item_html)
-      console.log(file_list)
-    })
+  let fm = new FilelistManager();
+  fm.loadFilelist();
+  $('#files .item.button').click(function(){
+    $this = $(this);
+    pm.addToCurrentPlaylist($this.data('file'))
   })
 }

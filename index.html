@@ -3,13 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Player</title>
-    <script> if (typeof module === 'object') { window.module = module; module = undefined;} </script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="semantic/dist/semantic.min.js"></script>
     <script src="scripts/index.js"></script>
-    <script> if (window.module) module = window.module; </script>
     <link rel="stylesheet" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="style/utility.css">
+    <link rel="stylesheet" href="style/index.css">
   </head>
   <body>
     <div id="head" class="ui fluid container">
@@ -73,10 +70,10 @@
               <button class="ui button">
                 <i class="step backward icon"></i>
               </button>
-              <button class="ui button">
+              <button id="control-play" class="ui button">
                 <i class="play icon"></i>
               </button>
-              <button class="ui button">
+              <button id="control-stop" class="ui button">
                 <i class="stop icon"></i>
               </button>
               <button class="ui button">
@@ -117,7 +114,10 @@
         <!-- CONTROL COLUMN -->
 
         <div class="five wide column">
-
+          <h2 class="ui header">Showing</h2>
+          <div id="preview-container">
+            <video id="preview" style="width: 100%" muted="muted" src=""></video>
+          </div>
           <select id="show-screen" class="ui fluid dropdown"></select>
           <button id="btn-detect" class="ui secondary fluid button">Detect</button>
           <button id="btn-start" class="ui primary fluid button">Start</button>
