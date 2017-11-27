@@ -3,8 +3,6 @@ const Playlist = require('./../models/Playlist.js');
 const fs = require('fs');
 const $ = require('jquery');
 const jQuery = $;
-const path = require('path');
-const electron = require('electron');
 
 class ShowManager{
 
@@ -12,9 +10,40 @@ class ShowManager{
     var that = this;
     this._choose_screen_id = 0;
 
+    this._preview$ = $('#preview');
+    this._preview  = $('#preview')[0];
+
     this.detect_screen()
     this.init_ui_event()
+    this.init_video_event()
     this.resize_preview()
+  }
+
+  init_video_event()
+  {
+    // this._preview.addEventListener('timeupdate', this.timeupdate.bind(this));
+    setInterval(this.timeupdate.bind(this), 100)
+  }
+
+  timeupdate()
+  {
+    var that = this;
+    if (that._preview.duration) {
+      let label_current_time = that.seconds_to_minutes_label(that._preview.currentTime)
+      let label_duration = that.seconds_to_minutes_label(that._preview.duration)
+      $('#label-current-time').text( label_current_time + ' / ' + label_duration);
+      $('#progress-timeline').progress({
+        percent: (that._preview.currentTime/that._preview.duration)*100
+      });
+    }
+  }
+
+  seconds_to_minutes_label(seconds)
+  {
+    let total_time_sec = Math.ceil(seconds)
+    let time_min = Math.floor(total_time_sec / 60)
+    let time_sec_remain = total_time_sec % 60
+    return time_min + ":" + ("00" + time_sec_remain).substr(-2,2)
   }
 
   get choosen_screen_obj()
@@ -30,6 +59,8 @@ class ShowManager{
 
   detect_screen()
   {
+    const electron = require('electron');
+
     var that = this;
     const eScreen = electron.screen
     this._displays = eScreen.getAllDisplays()
@@ -39,7 +70,6 @@ class ShowManager{
       let option_html = `<option value="${i}"> ${parseInt(i)+1}. ${this._displays[i].size.width} x ${this._displays[i].size.height} </option>`
       $('#show-screen').append(option_html)
     }
-    console.log(this._displays);
   }
 
   init_ui_event()
