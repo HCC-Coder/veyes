@@ -8,8 +8,7 @@ class PlaylistManager{
     this._playlist_filename = 'default'
     this._items = {};
 
-    if (!fs.existsSync('playlists')) {
-      fs.mkdirSync('playlists')
+    if (!fs.existsSync('playlists/' + this._playlist_filename + '.json')) {
       jsonfile.writeFileSync('playlists/' + this._playlist_filename + '.json', [])
     }
 
