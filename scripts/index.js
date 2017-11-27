@@ -23,7 +23,7 @@ function init_playlist()
 {
   pm = new PlaylistManager()
   cm = new ControllerManager(pm.current_playlist)
-  sm = new ShowManager()
+  sm = new ShowManager(cm)
 }
 
 

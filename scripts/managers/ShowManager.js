@@ -1,3 +1,8 @@
+const electron = require('electron')
+const {BrowserWindow} = require('electron').remote
+const path = require('path')
+const url = require('url')
+
 const jsonfile = require('jsonfile');
 const Playlist = require('./../models/Playlist.js');
 const fs = require('fs');
@@ -6,17 +11,53 @@ const jQuery = $;
 
 class ShowManager{
 
-  constructor() {
+  constructor(cm) {
     var that = this;
     this._choose_screen_id = 0;
+    this._cm = cm
 
     this._preview$ = $('#preview');
     this._preview  = $('#preview')[0];
+    this._show_window = null
 
     this.detect_screen()
     this.init_ui_event()
     this.init_video_event()
     this.resize_preview()
+
+    $('#btn-start').click(this.start_show.bind(that));
+  }
+
+  get show_window()
+  {
+    return this._show_window;
+  }
+
+  start_show()
+  {
+    if (!this._show_window) {
+      this._show_window = new BrowserWindow({
+        x:0, y:0,
+        // closable: false,
+        hasShadow: false,
+        resizable: false,
+        frame: false,
+        backgroundColor: '#000'
+      })
+      this._show_window.loadURL(url.format({
+        pathname: path.resolve('./show.html'),
+        protocol: 'file:',
+        slashes: true
+      }))
+      this._show_window.webContents.openDevTools()
+
+      this._show_window.on('closed', () => {
+        this._show_window = null
+      })
+    }
+    this._show_window.setBounds(this.choosen_screen_obj.bounds, false);
+    this._show_window.show()
+    this._cm.set_show_window(this._show_window)
   }
 
   init_video_event()
@@ -59,8 +100,6 @@ class ShowManager{
 
   detect_screen()
   {
-    const electron = require('electron');
-
     var that = this;
     const eScreen = electron.screen
     this._displays = eScreen.getAllDisplays()

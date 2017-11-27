@@ -17,6 +17,11 @@ class ControllerManager{
     this.init_ui_event()
   }
 
+  set_show_window(show_window)
+  {
+    this._show_window = show_window
+  }
+
   play()
   {
     if (this._preview$.attr('src') == '') {
@@ -26,6 +31,8 @@ class ControllerManager{
     this._preview$.show()
     this._preview.play()
     $('#control-play .icon').removeClass('play').addClass('pause')
+    console.log(this._show_window)
+    this._show_window.webContents.send('ping', 'whoooooooh!')
   }
   pause()
   {
