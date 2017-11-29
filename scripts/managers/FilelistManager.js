@@ -1,19 +1,34 @@
-const jsonfile = require('jsonfile');
 const Playlist = require('./../models/Playlist.js');
-const fs = require('fs');
-const $ = require('jquery');
-const jQuery = $;
+const ConfigManager = require('./../managers/ConfigManager.js');
 const path = require('path');
 
 class FilelistManager{
 
   constructor() {
-    this._videos_dir = path.resolve('./resources/videos');
+
+    this._configManager = new ConfigManager();
+
+    this.init_file_path_config()
+    this._videos_dir = path.resolve(this._configManager.get_config('video_filepath'));
     this._playlist_filename = 'default'
     this._playlist = new Playlist([]);
   }
 
+  init_file_path_config()
+  {
+    const {dialog} = require('electron').remote;
+    if (!this._configManager.get_config('video_filepath')) {
+      var video_filepath = dialog.showOpenDialog({
+          properties: ['openDirectory']
+      });
+      this._configManager.set_config('video_filepath', video_filepath[0]);
+    }
+  }
+
   loadFilelist() {
+    const fs = require('fs');
+    const $ = require('jquery');
+
     var that = this;
     $('#files').html('')
 
