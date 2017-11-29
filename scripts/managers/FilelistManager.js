@@ -1,6 +1,7 @@
 const Playlist = require('./../models/Playlist.js');
 const ConfigManager = require('./../managers/ConfigManager.js');
 const path = require('path');
+const $ = require('jquery');
 
 class FilelistManager{
 
@@ -10,6 +11,7 @@ class FilelistManager{
 
     this.init_file_path_config()
     this._videos_dir = path.resolve(this._configManager.get_config('video_filepath'));
+    $('#video-filepath').text(this._videos_dir)
     this._playlist_filename = 'default'
     this._playlist = new Playlist([]);
   }
@@ -27,7 +29,6 @@ class FilelistManager{
 
   loadFilelist() {
     const fs = require('fs');
-    const $ = require('jquery');
 
     var that = this;
     $('#files').html('')

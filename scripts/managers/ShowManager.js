@@ -25,7 +25,7 @@ class ShowManager{
     this.init_video_event()
     this.resize_preview()
 
-    $('#btn-start').click(this.start_show.bind(that));
+    $('#btn-start-show').click(this.start_show.bind(that));
   }
 
   get show_window()
