@@ -1,6 +1,6 @@
 ## showManager
 
-- show window created at begining but hidden
++ show window created at begining but hidden
 - always managed and sync with ShowManager
 - hide show window mute sound
 - start show window unmute sound

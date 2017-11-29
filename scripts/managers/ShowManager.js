@@ -25,7 +25,9 @@ class ShowManager{
     this.init_video_event()
     this.resize_preview()
 
+    this.create_show();
     $('#btn-start-show').click(this.start_show.bind(that));
+    $('#btn-hide-show').click(this.hide_show.bind(that));
   }
 
   get show_window()
@@ -33,12 +35,13 @@ class ShowManager{
     return this._show_window;
   }
 
-  start_show()
+  create_show()
   {
     if (!this._show_window) {
       this._show_window = new BrowserWindow({
         x:0, y:0,
         // closable: false,
+        show: false,
         hasShadow: false,
         resizable: false,
         frame: false,
@@ -55,9 +58,21 @@ class ShowManager{
         this._show_window = null
       })
     }
+  }
+
+  start_show()
+  {
+    this.create_show()
     this._show_window.setBounds(this.choosen_screen_obj.bounds, false);
     this._show_window.show()
     this._cm.set_show_window(this._show_window)
+  }
+
+  hide_show()
+  {
+    if (this._show_window) {
+      this._show_window.hide()
+    }
   }
 
   init_video_event()
