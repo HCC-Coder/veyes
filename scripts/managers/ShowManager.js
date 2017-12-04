@@ -58,6 +58,7 @@ class ShowManager{
         this._show_window = null
       })
     }
+    this._cm.set_show_window(this._show_window)
   }
 
   start_show()
@@ -65,7 +66,6 @@ class ShowManager{
     this.create_show()
     this._show_window.setBounds(this.choosen_screen_obj.bounds, false);
     this._show_window.show()
-    this._cm.set_show_window(this._show_window)
   }
 
   hide_show()

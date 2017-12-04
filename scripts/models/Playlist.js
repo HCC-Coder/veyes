@@ -8,7 +8,7 @@ class Playlist
     }
 
     get to_be_played() {
-        return 'resources/videos/' + this._to_be_played
+        return this._to_be_played
     }
 
     set_to_be_played(i) {

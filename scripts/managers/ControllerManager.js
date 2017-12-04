@@ -31,8 +31,7 @@ class ControllerManager{
     this._preview$.show()
     this._preview.play()
     $('#control-play .icon').removeClass('play').addClass('pause')
-    console.log(this._show_window)
-    this._show_window.webContents.send('ping', 'whoooooooh!')
+    this._show_window.webContents.send('play', this._playlist.to_be_played)
   }
   pause()
   {
@@ -47,6 +46,8 @@ class ControllerManager{
     this._preview$.attr('src', '');
     $('#control-play .icon').removeClass('pause').addClass('play')
     this._is_playing = false;
+    this._show_window.webContents.send('stop')
+
   }
 
   init_ui_event()

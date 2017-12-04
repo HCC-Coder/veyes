@@ -40,7 +40,7 @@ class FilelistManager{
         let item_html = `<tr>
           <td> ${items[i]} </td>
           <td>
-            <button class="ui mini icon item button" data-file="${items[i]}">
+            <button class="ui mini icon item button" data-file="${this._configManager.get_config('video_filepath')}/${items[i]}">
               <i class="upload icon"></i>
             </button>
           </td>
