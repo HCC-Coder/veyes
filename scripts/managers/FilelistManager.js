@@ -7,13 +7,25 @@ class FilelistManager{
 
   constructor(playlistManager) {
 
+    // inject managers
     this._playlistManager = playlistManager;
     this._configManager = new ConfigManager();
 
+    // default values
     this._playlist_filename = 'default'
     this._playlist = new Playlist([]);
 
+    // init
     this.init_file_path_config()
+    this.init_event()
+  }
+
+  init_event()
+  {
+    let that = this;
+    $('#video-filepath').click(function(){
+      that.update_file_path_config();
+    })
   }
 
   init_file_path_config()
@@ -22,11 +34,6 @@ class FilelistManager{
       this.update_file_path_config()
     }
     this.reload_file_list()
-
-    let that = this;
-    $('#video-filepath').click(function(){
-      that.update_file_path_config();
-    })
   }
 
   update_file_path_config()
