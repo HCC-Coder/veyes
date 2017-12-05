@@ -111,8 +111,8 @@ class ShowManager{
 
   resize_preview()
   {
-    let ratio = (this.choosen_screen_obj.bounds.width / this.choosen_screen_obj.bounds.height)*100;
-    $('#preview-container').css('padding-bottom', ratio);
+    let ratio = (this.choosen_screen_obj.bounds.height / this.choosen_screen_obj.bounds.width)*100;
+    $('#preview-container').css('padding-bottom', ratio + '%');
   }
 
   detect_screen()
