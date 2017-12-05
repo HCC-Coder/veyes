@@ -10,18 +10,19 @@ const jQuery = $;
 require('./semantic/dist/semantic.min.js');
 
 var file_list = new Playlist([]);
+var fm;
 var pm;
 var cm;
 var sm;
 $(function(){
-  init_files()
+  init_player()
   init_semantic()
-  init_playlist()
 })
 
-function init_playlist()
+function init_player()
 {
   pm = new PlaylistManager()
+  fm = new FilelistManager(pm)
   cm = new ControllerManager(pm.current_playlist)
   sm = new ShowManager(cm)
 }
@@ -31,14 +32,4 @@ function init_semantic()
 {
   $('.ui.dropdown').dropdown();
   $('.ui.progress').progress();
-}
-
-function init_files()
-{
-  let fm = new FilelistManager();
-  fm.loadFilelist();
-  $('#files .item.button').click(function(){
-    $this = $(this);
-    pm.addToCurrentPlaylist($this.data('file'))
-  })
 }

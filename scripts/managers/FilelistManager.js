@@ -5,29 +5,53 @@ const $ = require('jquery');
 
 class FilelistManager{
 
-  constructor() {
+  constructor(playlistManager) {
 
+    this._playlistManager = playlistManager;
     this._configManager = new ConfigManager();
 
-    this.init_file_path_config()
-    this._videos_dir = path.resolve(this._configManager.get_config('video_filepath'));
-    $('#video-filepath').text(this._videos_dir)
     this._playlist_filename = 'default'
     this._playlist = new Playlist([]);
+
+    this.init_file_path_config()
   }
 
   init_file_path_config()
   {
-    const {dialog} = require('electron').remote;
     if (!this._configManager.get_config('video_filepath')) {
-      var video_filepath = dialog.showOpenDialog({
-          properties: ['openDirectory']
-      });
-      this._configManager.set_config('video_filepath', video_filepath[0]);
+      this.update_file_path_config()
     }
+    this.reload_file_list()
+
+    let that = this;
+    $('#video-filepath').click(function(){
+      that.update_file_path_config();
+    })
   }
 
-  loadFilelist() {
+  update_file_path_config()
+  {
+    const {dialog} = require('electron').remote;
+    var video_filepath = dialog.showOpenDialog({
+        properties: ['openDirectory']
+    });
+    this._configManager.set_config('video_filepath', video_filepath[0]);
+    this.reload_file_list()
+  }
+
+  reload_file_list()
+  {
+    this._videos_dir = path.resolve(this._configManager.get_config('video_filepath'));
+    $('#video-filepath').text(this._videos_dir)
+    this.load_filelist()
+
+    var that = this;
+    $('#files .item.button').click(function(){
+      that._playlistManager.addToCurrentPlaylist($(this).data('file'))
+    })
+  }
+
+  load_filelist() {
     const fs = require('fs');
 
     var that = this;
