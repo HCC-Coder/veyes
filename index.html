@@ -13,7 +13,7 @@
     </div> <!-- head -->
 
     <div class="ui hidden divider"></div>
-    <div class="ui container">
+    <div id="veyes-container" class="ui container">
       <div class="ui compact grid">
 
         <!-- PLAYLIST COLUMN -->
@@ -122,9 +122,11 @@
             <video id="preview" style="width: 100%" muted="muted" src=""></video>
           </div>
           <select id="show-screen" class="ui fluid dropdown"></select>
-          <button id="btn-detect" class="ui secondary fluid button">Detect</button>
-          <button id="btn-start-show" class="ui primary fluid button">Start</button>
-          <button id="btn-hide-show" class="ui primary fluid button">Hide</button>
+          <div class="ui fluid huge buttons">
+            <button id="btn-detect" class="ui basic button"><i class="magnet icon"></i></button>
+            <button id="btn-start-show" class="ui red button"><i class="unhide icon"></i></button>
+            <button id="btn-hide-show" class="ui secondary button"><i class="hide icon"></i></button>
+          </div>
 
         </div>
       </div>
