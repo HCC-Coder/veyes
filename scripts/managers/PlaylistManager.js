@@ -9,7 +9,7 @@ class PlaylistManager{
 
     // default value
     this._playlist_filename = 'default'
-    this._items = {};
+    this._items = {}
 
     // init
     this.init_default_playlist_storage()
@@ -33,10 +33,15 @@ class PlaylistManager{
       that.save_playlists_to_storage()
     })
     $('#playlist .play-item').click(function(){
-      $('#playlist tr').removeClass('positive')
-      $(this).addClass('positive')
       that.current_playlist.set_to_be_played($(this).data('id'))
+      that.highlight_active()
     })
+  }
+  highlight_active()
+  {
+    let nth = this.current_playlist.to_be_played_index + 1;
+    $('#playlist tr').removeClass('positive')
+    $('#playlist tr.play-item:nth-child('+nth+')').addClass('positive')
   }
 
   init_default_playlist_storage()
@@ -72,6 +77,7 @@ class PlaylistManager{
       $('#playlist').append(item_html)
     }
     this.init_event()
+    this.highlight_active()
   }
 
   addToCurrentPlaylist(filename){

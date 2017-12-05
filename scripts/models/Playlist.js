@@ -2,16 +2,21 @@ class Playlist
 {
     constructor(items)
     {
+        this._to_be_played_index = 0
         this._items = items;
         if (this._items.length > 0)
             this._to_be_played = this._items[0]
     }
 
+    get to_be_played_index() {
+        return this._to_be_played_index
+    }
     get to_be_played() {
         return this._to_be_played
     }
 
     set_to_be_played(i) {
+        this._to_be_played_index = i
         this._to_be_played = this._items[i]
     }
 

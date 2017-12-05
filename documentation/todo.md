@@ -16,6 +16,7 @@
 
 ## playlistManager
 
+- name path
 - currently / active
 - play button shortcut
 - toggle delete/play button by edit button
