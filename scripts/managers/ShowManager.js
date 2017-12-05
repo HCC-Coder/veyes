@@ -66,12 +66,14 @@ class ShowManager{
     this.create_show()
     this._show_window.setBounds(this.choosen_screen_obj.bounds, false);
     this._show_window.show()
+    this._show_window.webContents.send('sound', false)
   }
 
   hide_show()
   {
     if (this._show_window) {
       this._show_window.hide()
+      this._show_window.webContents.send('sound', true)
     }
   }
 

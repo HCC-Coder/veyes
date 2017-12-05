@@ -9,3 +9,9 @@ ipcRenderer.on('play', (event, message) => {
 ipcRenderer.on('stop', (event, message) => {
   $('#player').attr('src', '')
 })
+
+
+ipcRenderer.on('sound', (event, message) => {
+  $('#player').prop('muted', message)
+})
+
