@@ -15,6 +15,9 @@
     overflow: hidden;
 }
 
+.hidden {
+    display: none;
+}
 #preview-container video {
     /* Make video to at least 100% wide and tall */
     min-width: 100%; 
