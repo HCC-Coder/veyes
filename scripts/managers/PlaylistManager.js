@@ -5,8 +5,9 @@ const fs = require('fs');
 
 class PlaylistManager{
 
-  constructor() {
+  constructor(mgs) {
 
+    this.mgs = mgs
     // default value
     this._playlist_filename = 'default'
     this._items = {}
@@ -27,14 +28,36 @@ class PlaylistManager{
   {
     var that = this
 
-    $('#playlist .remove.button').click(function(){
+    $('#playlist .btn-playlist-remove').hide()
+    $('#btn-playlist-edit').unbind('click').click(function(){
+      var $this = $(this)
+      if ($this.text() == 'done') {
+        $this.removeClass('red').text('edit')
+        $('.btn-playlist-play').show()
+        $('.btn-playlist-remove').hide()
+      } else {
+        $this.addClass('red').text('done')
+        $('.btn-playlist-play').hide()
+        $('.btn-playlist-remove').show()
+      }
+    })
+
+    $('#playlist .btn-playlist-remove').unbind('click').click(function(){
       that.current_playlist.delete_video($(this).data('id'))
       that.load_current_playlist()
       that.save_playlists_to_storage()
     })
-    $('#playlist .play-item').click(function(){
+    $('#playlist .play-item').unbind('click').click(function(){
       that.current_playlist.set_to_be_played($(this).data('id'))
       that.highlight_active()
+    })
+    $('#playlist .btn-playlist-play').unbind('click').click(function(){
+      console.log(that.mgs)
+      that.current_playlist.set_to_be_played($(this).data('id'))
+      that.highlight_active()
+      that.mgs.cm.stop()
+      that.mgs.cm.play()
+      
     })
   }
   highlight_active()
@@ -72,7 +95,10 @@ class PlaylistManager{
       let item_html = `<tr class="play-item" data-id="${i}">
         <td>${parseInt(i)+1}</td>
         <td>${items[i]}</td>
-        <td><button class='ui mini icon remove button' data-id="${i}"> <i class='trash icon'></i> </button></td>
+        <td>
+          <button class='ui mini icon play button btn-playlist-play' data-id="${i}"> <i class='play icon'></i> </button>
+          <button class='ui mini icon remove red button btn-playlist-remove' data-id="${i}"> <i class='trash icon'></i> </button>
+        </td>
       </tr>`
       $('#playlist').append(item_html)
     }

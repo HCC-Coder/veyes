@@ -11,10 +11,10 @@ const jQuery = $;
 
 class ShowManager{
 
-  constructor(cm) {
+  constructor(mgs) {
     var that = this;
     this._choose_screen_id = 0;
-    this._cm = cm
+    this._cm = mgs.cm
 
     this._preview$ = $('#preview');
     this._preview  = $('#preview')[0];

@@ -18,10 +18,15 @@ $(function(){
 
 function init_player()
 {
-  pm = new PlaylistManager()
+  let mgs = {}
+  pm = new PlaylistManager(mgs)
+  mgs.pm = pm;
   fm = new FilelistManager(pm)
-  cm = new ControllerManager(pm.current_playlist)
-  sm = new ShowManager(cm)
+  mgs.fm = fm;
+  cm = new ControllerManager(mgs)
+  mgs.cm = cm;
+  sm = new ShowManager(mgs)
+  mgs.sm = sm;
 }
 
 

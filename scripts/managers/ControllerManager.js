@@ -7,9 +7,9 @@ const path = require('path');
 
 class ControllerManager{
 
-  constructor(playlist) {
+  constructor(mgs) {
     var that = this;
-    this._playlist = playlist;
+    this._playlist = mgs.pm.current_playlist;
     this._preview$ = $('#preview');
     this._preview  = $('#preview')[0];
     this._is_playing = false;
@@ -30,7 +30,7 @@ class ControllerManager{
     this._is_playing = true;
     this._preview$.show()
     this._preview.play()
-    $('#control-play .icon').removeClass('play').addClass('pause')
+    $('#control-play .icon').removeClass('play').addClass('stop')
     this._show_window.webContents.send('play', this._playlist.to_be_played)
   }
   pause()
@@ -44,7 +44,7 @@ class ControllerManager{
     this._preview$.hide()
     this._preview.currentTime = 0
     this._preview$.attr('src', '');
-    $('#control-play .icon').removeClass('pause').addClass('play')
+    $('#control-play .icon').removeClass('stop').addClass('play')
     this._is_playing = false;
     this._show_window.webContents.send('stop')
 
@@ -55,13 +55,11 @@ class ControllerManager{
     var that = this;
     $('#control-play').click(function(){
       if (that._is_playing) {
-        that.pause();
+        that.stop();
+        // that.pause();
       } else {
         that.play();
       }
-    })
-    $('#control-stop').click(function(){
-      that.stop();
     })
   }
 }
