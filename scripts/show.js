@@ -12,6 +12,11 @@ ipcRenderer.on('stop', (event, message) => {
 
 
 ipcRenderer.on('sound', (event, message) => {
-  $('#player').prop('muted', message)
+  console.log(message)
+  if (message) {
+    $('#player')[0].muted = true
+  } else {
+    $('#player')[0].muted = false
+  }
 })
 
