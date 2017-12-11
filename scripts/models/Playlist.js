@@ -4,20 +4,32 @@ class Playlist
     {
         this._to_be_played_index = 0
         this._items = items;
-        if (this._items.length > 0)
-            this._to_be_played = this._items[0]
+    }
+
+    go_previous() {
+        if (this._to_be_played_index <= 0) {
+            this._to_be_played_index = (this._items.length-1)
+        } else {
+            this._to_be_played_index -= 1
+        }
+    }
+    go_next() {
+        if (this._to_be_played_index >= (this._items.length-1)) {
+            this._to_be_played_index = 0
+        } else {
+            this._to_be_played_index += 1
+        }
     }
 
     get to_be_played_index() {
         return this._to_be_played_index
     }
     get to_be_played() {
-        return this._to_be_played
+        return this._items[this._to_be_played_index]
     }
 
     set_to_be_played(i) {
         this._to_be_played_index = i
-        this._to_be_played = this._items[i]
     }
 
     add_video(video) {

@@ -63,8 +63,8 @@ class PlaylistManager{
   highlight_active()
   {
     let nth = this.current_playlist.to_be_played_index + 1;
-    $('#playlist tr').removeClass('positive')
-    $('#playlist tr.play-item:nth-child('+nth+')').addClass('positive')
+    $('#playlist tr').removeClass('negative')
+    $('#playlist tr.play-item:nth-child('+nth+')').addClass('negative')
   }
 
   init_default_playlist_storage()

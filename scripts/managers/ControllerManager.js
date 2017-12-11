@@ -9,6 +9,7 @@ class ControllerManager{
 
   constructor(mgs) {
     var that = this;
+    this.mgs = mgs;
     this._playlist = mgs.pm.current_playlist;
     this._preview$ = $('#preview');
     this._preview  = $('#preview')[0];
@@ -20,6 +21,22 @@ class ControllerManager{
   set_show_window(show_window)
   {
     this._show_window = show_window
+  }
+
+  play_previous()
+  {
+    this._playlist.go_previous()
+    this.mgs.pm.highlight_active()
+    this.stop()
+    this.play()
+  }
+
+  play_next()
+  {
+    this._playlist.go_next()
+    this.mgs.pm.highlight_active()
+    this.stop()
+    this.play()
   }
 
   play()
@@ -60,6 +77,13 @@ class ControllerManager{
       } else {
         that.play();
       }
+    })
+
+    $('#control-next').click(function(){
+      that.play_next()
+    })
+    $('#control-prev').click(function(){
+      that.play_previous()
     })
   }
 }
