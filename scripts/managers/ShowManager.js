@@ -52,7 +52,7 @@ class ShowManager{
         protocol: 'file:',
         slashes: true
       }))
-      this._show_window.webContents.openDevTools()
+      // this._show_window.webContents.openDevTools()
 
       this._show_window.on('closed', () => {
         this._show_window = null

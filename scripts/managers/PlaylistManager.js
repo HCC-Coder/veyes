@@ -52,7 +52,6 @@ class PlaylistManager{
       that.highlight_active()
     })
     $('#playlist .btn-playlist-play').unbind('click').click(function(){
-      console.log(that.mgs)
       that.current_playlist.set_to_be_played($(this).data('id'))
       that.highlight_active()
       that.mgs.cm.stop()
@@ -63,8 +62,8 @@ class PlaylistManager{
   highlight_active()
   {
     let nth = this.current_playlist.to_be_played_index + 1;
-    $('#playlist tr').removeClass('negative')
-    $('#playlist tr.play-item:nth-child('+nth+')').addClass('negative')
+    $('#playlist tr').removeClass('active')
+    $('#playlist tr.play-item:nth-child('+nth+')').addClass('active')
   }
 
   init_default_playlist_storage()
