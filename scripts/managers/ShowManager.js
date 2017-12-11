@@ -52,6 +52,7 @@ class ShowManager{
       this._show_window = new BrowserWindow({
         x:0, y:0,
         // closable: false,
+        // alwaysOnTop: true,
         focusable: false,
         webSecurity: false,
         show: false,
@@ -132,11 +133,11 @@ class ShowManager{
   {
     var that = this;
     const eScreen = electron.screen
-    this._displays = eScreen.getAllDisplays()
+    this._displays = eScreen.getAllDisplays().reverse()
 
     $('#show-screen').html('');
     for (let i in this._displays) {
-      let option_html = `<option value="${i}"> ${parseInt(i)+1}. ${this._displays[i].size.width} x ${this._displays[i].size.height} </option>`
+      let option_html = `<option value="${i}"> ${this._displays.length-i}. ${this._displays[i].size.width} x ${this._displays[i].size.height} </option>`
       $('#show-screen').append(option_html)
     }
   }
