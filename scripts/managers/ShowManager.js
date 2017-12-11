@@ -26,8 +26,19 @@ class ShowManager{
     this.resize_preview()
 
     this.create_show();
-    $('#btn-start-show').click(this.start_show.bind(that));
-    $('#btn-hide-show').click(this.hide_show.bind(that));
+    $('#btn-toggle-show').click(function(){
+      var btn = $(this);
+      var btn_icon = $(this).children('.icon');
+      if(btn_icon.hasClass('unhide')) {
+        btn_icon.removeClass('unhide').addClass('hide')
+        btn.addClass('black').removeClass('red')
+        that.hide_show()
+      } else {
+        btn_icon.removeClass('hide').addClass('unhide')
+        btn.addClass('red').removeClass('black')
+        that.start_show()
+      }
+    });
   }
 
   get show_window()
@@ -41,6 +52,7 @@ class ShowManager{
       this._show_window = new BrowserWindow({
         x:0, y:0,
         // closable: false,
+        focusable: false,
         webSecurity: false,
         show: false,
         hasShadow: false,
