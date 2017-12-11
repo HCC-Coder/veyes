@@ -11,7 +11,10 @@ function createWindow () {
 
   // Create the browser window.
   const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
-  win = new BrowserWindow({x:0, y:0, width: width, height: height})
+  win = new BrowserWindow({
+    x:0, y:0, width: width, height: height,
+    icon: path.join(__dirname, 'icons/64x64.png')
+  })
 
   // and load the index.html of the app.
   win.loadURL(url.format({

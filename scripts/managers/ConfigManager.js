@@ -1,6 +1,8 @@
 const fs = require('fs')
-const jsonfile = require('jsonfile');
-const CONFIG_FILEPATH = 'veyes-config.json'
+const jsonfile = require('jsonfile')
+const {app} = require('electron').remote
+
+const CONFIG_FILEPATH = app.getPath('appData') + '/veyes-config.json'
 
 class ConfigManager
 {

@@ -1,5 +1,5 @@
 const electron = require('electron')
-const {BrowserWindow} = require('electron').remote
+const {BrowserWindow, app} = require('electron').remote
 const path = require('path')
 const url = require('url')
 
@@ -41,6 +41,7 @@ class ShowManager{
       this._show_window = new BrowserWindow({
         x:0, y:0,
         // closable: false,
+        webSecurity: false,
         show: false,
         hasShadow: false,
         resizable: false,
@@ -48,7 +49,7 @@ class ShowManager{
         backgroundColor: '#000'
       })
       this._show_window.loadURL(url.format({
-        pathname: path.resolve('./show.html'),
+        pathname: path.resolve(app.getAppPath(), 'show.html'),
         protocol: 'file:',
         slashes: true
       }))

@@ -1,5 +1,7 @@
 const Playlist = require('./../models/Playlist.js');
 
+const {app} = require('electron').remote
+const PLAYLIST_FILEPATH = app.getPath('appData') + '/playlists/'
 const jsonfile = require('jsonfile');
 const fs = require('fs');
 
@@ -68,20 +70,21 @@ class PlaylistManager{
 
   init_default_playlist_storage()
   {
-    if (!fs.existsSync('playlists/' + this._playlist_filename + '.json')) {
-      jsonfile.writeFileSync('playlists/' + this._playlist_filename + '.json', [])
+    if (!fs.existsSync(PLAYLIST_FILEPATH + this._playlist_filename + '.json')) {
+      fs.mkdirSync(PLAYLIST_FILEPATH)
+      jsonfile.writeFileSync(PLAYLIST_FILEPATH + this._playlist_filename + '.json', [])
     }
   }
 
   init_load_playlists_from_storage()
   {
     $('#dropdown-playlists').html('');
-    let files = fs.readdirSync('playlists');
+    let files = fs.readdirSync(PLAYLIST_FILEPATH);
     for(var i in files) {
       if (files[i] != '.gitignore') {
         let item_html = `<option value="${files[i]}"> ${files[i]} </option>`;
         $('#dropdown-playlists').append(item_html)
-        this._items[files[i]] = new Playlist(jsonfile.readFileSync('playlists/' + files[i]));
+        this._items[files[i]] = new Playlist(jsonfile.readFileSync(PLAYLIST_FILEPATH + files[i]));
       }
     }
   }
@@ -114,7 +117,7 @@ class PlaylistManager{
   save_playlists_to_storage() {
     for(let filename in this._items){
       let item = this._items[filename];
-      jsonfile.writeFileSync('playlists/' + filename, item.get_array())
+      jsonfile.writeFileSync(PLAYLIST_FILEPATH + filename, item.get_array())
     }
   }
 }

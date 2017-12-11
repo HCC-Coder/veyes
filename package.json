@@ -1,5 +1,6 @@
 {
   "name": "electron-video-player",
+  "productName": "veyes",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -10,13 +11,14 @@
     "type": "git",
     "url": "git+https://github.com/ns17diploma/electron-video-player.git"
   },
-  "author": "",
+  "author": "elliot@powerstation.sg",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ns17diploma/electron-video-player/issues"
   },
   "homepage": "https://github.com/ns17diploma/electron-video-player#readme",
   "devDependencies": {
+    "electron": "^1.7.9",
     "jquery": "^3.2.1"
   },
   "dependencies": {
