@@ -96,7 +96,12 @@ class PlaylistManager{
     for(let i in items) {
       let item_html = `<tr class="play-item" data-id="${i}">
         <td>${parseInt(i)+1}</td>
-        <td>${items[i]}</td>
+        <td>
+          <h5 class="ui header">
+            ${items[i].split('/').pop()}
+            <span class="ui mini label">${items[i].substr(0, items[i].lastIndexOf('/'))}</span>
+          </h5>
+        </td>
         <td>
           <button class='ui mini icon play button btn-playlist-play' data-id="${i}"> <i class='play icon'></i> </button>
           <button class='ui mini icon remove red button btn-playlist-remove' data-id="${i}"> <i class='trash icon'></i> </button>
