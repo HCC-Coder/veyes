@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Player</title>
+    <title>veyes</title>
     <script src="scripts/index.js"></script>
     <link rel="stylesheet" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="style/utility.css">
@@ -18,54 +18,10 @@
 
         <!-- PLAYLIST COLUMN -->
         <div class="six wide column">
-          <h2 class="ui header d-inblock">
-            Playlist
-          </h2>
-          <select id="dropdown-playlists" class="ui dropdown d-inblock ml-2">
-            <option value="0">default</option>
-          </select>
-          <button class="ui button d-inblock ml-2">Load</button>
-          <div class="ui divider"></div>
-          <h3 class="ui header">
-            <span>Default playlist</span>
-            <button id="btn-playlist-edit" class="ui mini pull-right button">edit</button>
-          </h3>
-          <table class="ui compact table">
-            <thead>
-              <tr>
-                <th>Seq</th>
-                <th>Name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="playlist">
-              <tr>
-                <td colspan="3"> nothing here yet </td>
-              </tr>
-            </tbody>
-          </table>
-          <h2 class="ui header">
-            Files
-            <div id="video-filepath" class="ui orange label"></div>
-          </h2>
-          <table class="ui very compact table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="files">
-              
-            </tbody>
-          </table>
-        </div>
-        <!-- PLAYLIST COLUMN -->
-        <!-- CONTROL COLUMN -->
-        <div class="five wide column">
 
-          <h2 class="ui header">Now playing</h2>
+          <h2 class="ui header">Video player</h2>
           <div class="ui divider"></div>
+          <!-- CONTROL -->
           <h3 class="ui header">Controls</h3>
           <div class="ui segment">
             
@@ -110,6 +66,66 @@
             </div>
             <div class="ui hidden divider"></div>
           </div>
+          <!-- CONTROL -->
+          <select id="dropdown-playlists" class="ui dropdown d-inblock ml-2">
+            <option value="0">default</option>
+          </select>
+          <div class="ui divider"></div>
+          <h3 class="ui header">
+            <span>Default playlist</span>
+            <button id="btn-playlist-edit" class="ui mini pull-right button">edit</button>
+          </h3>
+          <table class="ui compact table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="playlist">
+              <tr>
+                <td colspan="3"> nothing here yet </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 class="ui header">
+            Files
+            <div id="video-filepath" class="ui orange label"></div>
+          </h2>
+          <table class="ui very compact table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="files">
+              
+            </tbody>
+          </table>
+        </div>
+        <!-- PLAYLIST COLUMN -->
+        <!-- CONTROL COLUMN -->
+        <div class="five wide column">
+          <h3 class="ui header">
+            Background
+            <button id="btn-background-edit" class="ui mini pull-right button">edit</button>
+          </h3>
+          <table class="ui compact table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="background">
+              <tr>
+                <td colspan="3"> nothing here yet </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <!-- CONTROL COLUMN -->
 

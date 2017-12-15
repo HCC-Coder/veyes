@@ -4,6 +4,7 @@ const {app} = require('electron').remote
 const PLAYLIST_FILEPATH = app.getPath('appData') + '/playlists/'
 const jsonfile = require('jsonfile');
 const fs = require('fs');
+const path = require('path');
 
 class PlaylistManager{
 
@@ -98,7 +99,7 @@ class PlaylistManager{
         <td>${parseInt(i)+1}</td>
         <td>
           <h5 class="ui header">
-            ${items[i].split('/').pop()}
+            ${path.basename(items[i])}
             <span class="ui mini label">${items[i].substr(0, items[i].lastIndexOf('/'))}</span>
           </h5>
         </td>

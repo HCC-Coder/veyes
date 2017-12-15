@@ -5,10 +5,11 @@ const $ = require('jquery');
 
 class FilelistManager{
 
-  constructor(playlistManager) {
+  constructor(mgs) {
 
     // inject managers
-    this._playlistManager = playlistManager;
+    this._playlistManager = mgs.pm;
+    this._backgroundManager = mgs.bm;
     this._configManager = new ConfigManager();
 
     // default values
@@ -54,7 +55,12 @@ class FilelistManager{
 
     var that = this;
     $('#files .item.button').click(function(){
-      that._playlistManager.addToCurrentPlaylist($(this).data('file'))
+      let $this = $(this).closest('tr')
+      if ($this.data('type') == 'video') {
+        that._playlistManager.addToCurrentPlaylist($this.data('path'))
+      } else if ($this.data('type') == 'image') {
+        that._backgroundManager.addToCurrentPlaylist($this.data('path'))
+      }
     })
   }
 
@@ -66,12 +72,29 @@ class FilelistManager{
 
     let items = fs.readdirSync(this._videos_dir)
     for(let i in items) {
-      if ($.inArray(items[i].split('.').pop(), ['mov', 'mp4']) == 1) {
-        this._playlist.add_video(items[i]);
-        let item_html = `<tr>
-          <td> ${items[i]} </td>
+      let item_ext = items[i].split('.').pop()
+      let item_path = path.resolve(this._videos_dir, items[i])
+      if ($.inArray(item_ext, ['mov', 'mp4', 'flv', 'm4v', 'avi', 'wma']) !== -1) {
+        let item_html = `<tr data-type="video" data-path="${item_path}">
           <td>
-            <button class="ui mini icon item button" data-file="${this._configManager.get_config('video_filepath')}/${items[i]}">
+            <i class="circular purple video icon"> </i>
+            ${items[i]}
+          </td>
+          <td>
+            <button class="ui mini icon item button">
+              <i class="upload icon"></i>
+            </button>
+          </td>
+        </tr>`
+        $('#files').append(item_html)
+      } else if ($.inArray(item_ext, ['jpg']) !== -1) {
+        let item_html = `<tr data-type="image" data-path="${item_path}">
+          <td>
+            <i class="circular orange image icon"> </i>
+            ${items[i]}
+          </td>
+          <td>
+            <button class="ui mini icon item button">
               <i class="upload icon"></i>
             </button>
           </td>
