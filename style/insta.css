@@ -1,0 +1,51 @@
+body {
+  color: white;
+  margin: 0px;
+  background-color: black;
+  overflow: hidden; }
+
+.brick {
+  background: white;
+  color: #333;
+  border: none;
+  width: 14%; }
+
+.brick img {
+  display: block;
+  width: 100%; }
+
+.brick .info {
+  color: black;
+  font-family: arial;
+  padding: 2px 4px;
+  font-size: 0.7em;
+  white-space: nowrap;
+  overflow: hidden; }
+
+/** Animation Filter Start **/
+img.animated {
+  -webkit-animation: filter-animation 7s 1; }
+
+@-webkit-keyframes filter-animation {
+  0% {
+    -webkit-filter: sepia(0) saturate(2); }
+  50% {
+    -webkit-filter: sepia(1) saturate(8); }
+  100% {
+    -webkit-filter: sepia(0) saturate(2); } }
+
+/** Animation Filter End **/
+#header {
+  text-align: center; }
+
+#gallery {
+  margin-bottom: 4px; }
+
+@font-face {
+  font-family: 'digital-7';
+  src: url("./../fonts/digital-7 (mono).ttf"); }
+
+#countdown {
+  font-family: 'digital-7';
+  text-align: center;
+  font-size: 2em; }
