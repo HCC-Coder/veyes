@@ -48,30 +48,7 @@ class ShowManager{
 
   create_show()
   {
-    if (!this._show_window) {
-      this._show_window = new BrowserWindow({
-        x:0, y:0,
-        // closable: false,
-        // alwaysOnTop: true,
-        focusable: false,
-        webSecurity: false,
-        show: false,
-        hasShadow: false,
-        resizable: false,
-        frame: false,
-        backgroundColor: '#000'
-      })
-      this._show_window.loadURL(url.format({
-        pathname: path.resolve(app.getAppPath(), 'show.html'),
-        protocol: 'file:',
-        slashes: true
-      }))
-      this._show_window.webContents.openDevTools()
-
-      this._show_window.on('closed', () => {
-        this._show_window = null
-      })
-    }
+    this._show_window = electron.remote.getCurrentWindow().obj_wins.show;
     this._cm.set_show_window(this._show_window)
   }
 
