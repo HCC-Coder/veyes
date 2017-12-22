@@ -1,8 +1,20 @@
-const $ = require('jquery');
-const jQuery = $;
 const Freewall = require('freewall').Freewall;
 require('promise');
 require('jquery.marquee');
+
+var insta_show = false;
+var column_width = null;
+
+ipcRenderer.on('insta_show', (event, message) => {
+  insta_show = message;
+  column_width = $('body').width()/$column_number;
+
+  if (message) {
+    $('#insta-gallery').show();
+  } else {
+    $('#insta-gallery').hide();    
+  }
+});
 
 (function(EL, $, undefined){
 
@@ -130,7 +142,7 @@ $.fn.random = function()
       var html = $('<div class="brick"></div>');
       html.append($(video));
       html.append($('<div class="info marquee">'+video.attr('caption')+'</div>'));
-      $('#gallery').prepend(html[0].outerHTML);
+      $('#insta-gallery').prepend(html[0].outerHTML);
 
     },
 
@@ -140,7 +152,7 @@ $.fn.random = function()
       var html = $('<div class="brick"></div>');
       html.append($(image));
       html.append($('<div class="info marquee">'+image.caption+'</div>'));
-      $('#gallery').prepend(html[0].outerHTML);
+      $('#insta-gallery').prepend(html[0].outerHTML);
 
     },
 
@@ -233,67 +245,6 @@ $.fn.random = function()
 }(window.EL = window.EL || {}, jQuery));
 
 
-
-
-
-
-(function(EL, $, undefined){
-    $(function(){
-
-        var input_countdown_till = 1715;
-        var date_till = setTodayTillTime(input_countdown_till);
-
-        // updateCountdown
-        var timeinterval = setInterval(function(){
-            var obj_time_remaining = getTimeRemaining(date_till);
-            console.log(obj_time_remaining);
-            if (obj_time_remaining.total > 0) {
-                updateCountdown(obj_time_remaining);
-            } else {
-                $('#countdown').text('');
-            }
-        },1000);
-
-        function updateCountdown(obj) {
-            var str_countdown = '';
-            if (obj.hours > 0) {
-                str_countdown += ('00' + obj.hours + ':').slice(-3);
-            }
-            str_countdown += ('00' + obj.minutes + ':').slice(-3);
-            str_countdown += ('00' + obj.seconds).slice(-2);
-            $('#countdown').text(str_countdown);
-        }
-
-        function setTodayTillTime(time_till) {
-            var till = new Date();
-            till.setHours(
-                Math.floor(time_till / 100)
-            );
-            till.setMinutes(
-                Math.floor(time_till % 100)
-            );
-            till.setSeconds(0);
-            return till;
-        }
-
-        function getTimeRemaining(endtime){
-            var t = Date.parse(endtime) - Date.parse(new Date());
-            var seconds = Math.floor( (t/1000) % 60 );
-            var minutes = Math.floor( (t/1000/60) % 60 );
-            var hours = Math.floor( (t/(1000*60*60)) % 24 );
-            var days = Math.floor( t/(1000*60*60*24) );
-            return {
-                'total': t,
-                'days': days,
-                'hours': hours,
-                'minutes': minutes,
-                'seconds': seconds
-            };
-        }
-    });
-
-
-}(window.EL = window.EL || {}, jQuery));
 /// bootstrap
 
 // 5, 6, 7, 8
@@ -305,23 +256,23 @@ $column_number = 6;
 
     // hash tag from url
 
-    var url_hashes = window.location.hash.split('#');
-    url_hashes.shift();
-    EL.Data.hashtags = EL.Data.hashtags.concat(url_hashes);
     // console.log(EL.Data.hashtags);
 
     // map column width
     column_width = $('body').width()/$column_number;
 
     // new wall
-    wall = new Freewall("#gallery");
+    wall = new Freewall("#insta-gallery");
 
     // insta_connect
-    insta_connect(column_width);
+    if (insta_show)
+      insta_connect(column_width);
 
     // insta_connect loop timer
     setInterval(function(){
-      insta_connect(column_width);
+      if (insta_show) {
+        insta_connect(column_width);
+      }
     }, 5000);
 
     // animation

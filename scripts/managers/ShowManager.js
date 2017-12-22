@@ -25,7 +25,8 @@ class ShowManager{
     this.init_video_event()
     this.resize_preview()
 
-    this.create_show();
+    this._show_window = electron.remote.getCurrentWindow().obj_wins.show;
+
     $('#btn-toggle-show').click(function(){
       var btn = $(this);
       var btn_icon = $(this).children('.icon');
@@ -46,15 +47,8 @@ class ShowManager{
     return this._show_window;
   }
 
-  create_show()
-  {
-    this._show_window = electron.remote.getCurrentWindow().obj_wins.show;
-    this._cm.set_show_window(this._show_window)
-  }
-
   start_show()
   {
-    this.create_show()
     this._show_window.setBounds(this.choosen_screen_obj.bounds, false);
     this._show_window.show()
     this._show_window.webContents.send('sound', false)

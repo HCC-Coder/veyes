@@ -1,9 +1,10 @@
-const jsonfile = require('jsonfile');
-const Playlist = require('./../models/Playlist.js');
-const fs = require('fs');
-const $ = require('jquery');
-const jQuery = $;
-const path = require('path');
+const electron = require('electron')
+const jsonfile = require('jsonfile')
+const Playlist = require('./../models/Playlist.js')
+const fs = require('fs')
+const $ = require('jquery')
+const jQuery = $
+const path = require('path')
 
 class ControllerManager{
 
@@ -16,11 +17,7 @@ class ControllerManager{
     this._is_playing = false;
 
     this.init_ui_event()
-  }
-
-  set_show_window(show_window)
-  {
-    this._show_window = show_window
+    this._show_window = electron.remote.getCurrentWindow().obj_wins.show;
   }
 
   play_previous()

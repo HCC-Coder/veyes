@@ -23,7 +23,7 @@ function createWindow () {
     slashes: true
   }))
 
-  obj_wins.ctrl.webContents.openDevTools()
+  // obj_wins.ctrl.webContents.openDevTools()
   obj_wins.ctrl.obj_wins = obj_wins;
 
   // Emitted when the window is closed.
@@ -52,7 +52,7 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
-  obj_wins.show.webContents.openDevTools()
+  // obj_wins.show.webContents.openDevTools()
 
   obj_wins.show.on('closed', () => {
     obj_wins.show = null

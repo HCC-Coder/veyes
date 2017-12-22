@@ -38,7 +38,7 @@ img.animated {
 #header {
   text-align: center; }
 
-#gallery {
+#insta-gallery {
   margin-bottom: 4px; }
 
 @font-face {
@@ -46,6 +46,19 @@ img.animated {
   src: url("./../fonts/digital-7 (mono).ttf"); }
 
 #countdown {
+  display: none;
+  position: fixed;
+  top: 316px;
+  left: 0;
+  right: 0;
+
   font-family: 'digital-7';
   text-align: center;
-  font-size: 2em; }
+  font-size: 3.4em;
+
+  padding: 25px;
+  background-color: rgba(255,255,255,0.4);
+  color: #000;
+
+  z-index: 1000;
+}
