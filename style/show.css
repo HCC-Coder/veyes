@@ -24,7 +24,7 @@ body {
   // min-height: 100%; 
   
   /* Setting width & height to auto prevents the browser from stretching or squishing the video */
-  width: auto;
+  width: 100%;
   height: auto;
   
   /* Center the video */

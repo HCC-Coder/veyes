@@ -6,6 +6,10 @@ const CountdownUtility = require('./scripts/managers/CountdownUtility.js');
 const countdownUtility = new CountdownUtility();
 var countdownTimeInterval = null;
 
+const Freewall = require('freewall').Freewall;
+require('promise');
+require('jquery.marquee');
+
 ipcRenderer.on('play', (event, message) => {
   $('#player').attr('src', message).show()
   $('#player')[0].play()
@@ -27,6 +31,10 @@ ipcRenderer.on('sound', (event, message) => {
 
 ipcRenderer.on('background', (event, message) => {
   $('body').css('background-image', 'url("' + message.replace(/\\/g, "/") + '")')
+})
+
+ipcRenderer.on('countdown-bottom', (event, message) => {
+  $('#countdown').css('bottom', message)
 })
 
 ipcRenderer.on('countdown', (event, message) => {

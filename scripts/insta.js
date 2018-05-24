@@ -1,6 +1,3 @@
-const Freewall = require('freewall').Freewall;
-require('promise');
-require('jquery.marquee');
 
 var insta_show = false;
 var column_width = null;
@@ -43,7 +40,7 @@ ipcRenderer.on('insta_show', (event, message) => {
         for(var j in EL.Box.insta_obj) {
           var raw_item = EL.Box.insta_obj[j];
 
-          if (raw_item.id == item.id) {
+          if (raw_item.node.id == item.node.id) {
             is_repeated = true;
           }
         }
@@ -100,8 +97,6 @@ ipcRenderer.on('insta_show', (event, message) => {
         var insta_obj = EL.Insta.parse_post(insta_obj_str);
 
         var nheight = column_width/insta_obj.dimensions.width*insta_obj.dimensions.height;
-
-        console.log(insta_obj);
 
         var video = $('<video />').attr({
           src : insta_obj.video_url,
@@ -212,8 +207,9 @@ $.fn.random = function()
         // search and eval object str : in var insta_obj
         var insta_obj_str;
         var lines = sc.split('\n');
+        // console.log(lines);
         for(var i = lines.length-1; i >= 0; i--) {
-          if (lines[i].indexOf('window._sharedData') !== -1) {
+          if (lines[i].indexOf('window._sharedData = ') !== -1) {
             insta_obj_str = lines[i];
             break;
           }
@@ -225,7 +221,10 @@ $.fn.random = function()
     parse_nodes : function(insta_obj_str) {
 
       var insta_objs = EL.Insta._parse(insta_obj_str);
-      return insta_objs.entry_data.TagPage[0].tag.media.nodes;
+      // console.log(insta_objs.entry_data);
+      // console.log(insta_objs.entry_data.TagPage[0].graphql.hashtag.edge_hashtag_to_media.edges);
+      return insta_objs.entry_data.TagPage[0].graphql.hashtag.edge_hashtag_to_media.edges;
+      // return insta_objs.entry_data.TagPage[0].tag.media.nodes;
     },
 
     parse_post : function(insta_obj_str) {
@@ -313,17 +312,20 @@ $column_number = 6;
       var new_insta_objects = EL.Box.filter(insta_objects);
 
       // append wall
+      console.log(new_insta_objects.length);
       if (new_insta_objects.length != 0) {
 
         Promise.all(new_insta_objects.reverse().map(function(insta_obj){
           return new Promise(function(callback){
 
-            if (insta_obj.is_video) {
+            if (insta_obj.node.is_video) {
 
-              EL.Fetcher.get_video(insta_obj.code, column_width, callback);
+              console.log('video');
+              console.log(insta_obj);
+              EL.Fetcher.get_video(insta_obj.node.shortcode, column_width, callback);
 
             } else {
-              EL.Fetcher.get_image(insta_obj.code, column_width, callback);
+              EL.Fetcher.get_image(insta_obj.node.shortcode, column_width, callback);
             }
 
           });
