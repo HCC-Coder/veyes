@@ -109,8 +109,15 @@
         <!-- BACKGROUND COLUMN -->
         <div class="five wide column">
           <h3 class="ui header">
-            Photo wall #hccjb
+            Photo wall
           </h3>
+
+          <div class="ui form">
+            <input type="text" id="input-hashtag" value="hccjb" placeholder="hashtag">
+          </div>
+
+          <div class="ui divider"></div>
+
           <div id="btn-insta-wall" class="ui toggle checkbox">
             <input type="checkbox">
             <label>Turn on Instagram Photo Wall</label>
@@ -122,13 +129,16 @@
           <div class="ui input">
             <input id="input-countdown" type="text" placeholder="1710">
           </div>
-          <button id="btn-countdown-clear" class="ui button">clear coundown</button>
+          <div class="ui input">
+            <input id="input-countdown-bottom" type="text" placeholder="countdown#bottom css">
+          </div>
           <div class="ui divider"></div>
-          <h3 class="ui header">
+          <button id="btn-countdown-clear" class="ui button">clear coundown</button>
+          <h3 class="ui header hidden">
             Background
             <button id="btn-background-edit" class="ui mini pull-right button">edit</button>
           </h3>
-          <table class="ui compact table">
+          <table class="ui compact table hidden">
             <thead>
               <tr>
                 <th></th>

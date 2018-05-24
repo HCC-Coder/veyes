@@ -1,12 +1,15 @@
 
 var insta_show = false;
 var column_width = null;
+var EL;
 
 ipcRenderer.on('insta_show', (event, message) => {
-  insta_show = message;
+  console.log(message)
+  EL.Data.hashtags = [message.tag];
+  insta_show = message.v;
   column_width = $('body').width()/$column_number;
 
-  if (message) {
+  if (message.v) {
     $('#insta-gallery').show();
   } else {
     $('#insta-gallery').hide();    

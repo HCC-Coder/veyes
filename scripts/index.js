@@ -52,9 +52,11 @@ function init_semantic()
   $('.ui.progress').progress();
 
   $('#btn-insta-wall').checkbox({'onChecked': function(){
-    that_show_window.webContents.send('insta_show', true);
+    let tag = $('#input-hashtag').val();
+    that_show_window.webContents.send('insta_show', {v: true, tag: tag});
   },
   'onUnchecked': function(){
-    that_show_window.webContents.send('insta_show', false);
+    let tag = $('#input-hashtag').val();
+    that_show_window.webContents.send('insta_show', {v: false, tag: tag});
   }})
 }
