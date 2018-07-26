@@ -4,171 +4,103 @@
     <meta charset="UTF-8">
     <title>veyes</title>
     <script src="scripts/index.js"></script>
-    <link rel="stylesheet" href="semantic/dist/semantic.min.css">
-    <link rel="stylesheet" href="style/utility.css">
+    <link rel="stylesheet" href="leyes/index.css">
     <link rel="stylesheet" href="style/index.css">
   </head>
-  <body>
-    <div id="head" class="ui fluid container">
-    </div> <!-- head -->
-
-    <div class="ui hidden divider"></div>
-    <div id="veyes-container" class="ui container">
-      <div class="ui compact grid">
-
-        <!-- PLAYLIST COLUMN -->
-        <div class="six wide column">
-
-          <h2 class="ui header">Video player</h2>
-          <div class="ui divider"></div>
-          <!-- CONTROL -->
-          <h3 class="ui header">Controls</h3>
-          <div class="ui segment">
-            
-            <div class="ui icon fluid huge buttons">
-              <button id="control-prev" class="ui button">
-                <i class="step backward icon"></i>
-              </button>
-              <button id="control-play" class="ui button">
-                <i class="play icon"></i>
-              </button>
-              <button id="control-next" class="ui button">
-                <i class="step forward icon"></i>
-              </button>
-            </div> <!-- ui icon buttons -->
-
-            <div id="progress-timeline" class="ui small black progress" data-value='33' data-total='321'>
-              <div class="bar">
-                <div class="progress"></div>
-              </div>
-              <div id="label-current-time" class="label">0:00 / 0:00</div>
-            </div>
-
-            <div class="ui form hidden">
-              <div class="two fields">
-                <div class="field">
-                  <h3 class="ui header">Repeat playlist</h3>
-                  <div class="ui mini buttons">
-                    <button class="ui button">all</button>
-                    <button class="ui button">one</button>
-                  </div>
-                </div>
-                <div class="field">
-                  <h3 class="ui header">Navigate time :</h3>
-                  <div class="ui fluid action input">
-                    <input type="text" value="00:00" />
-                    <button class="ui button">
-                      GO!
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ui hidden divider"></div>
-          </div>
-          <!-- CONTROL -->
-          <select id="dropdown-playlists" class="ui dropdown d-inblock ml-2">
-            <option value="0">default</option>
-          </select>
-          <div class="ui divider"></div>
-          <h3 class="ui header">
-            <span>Default playlist</span>
-            <button id="btn-playlist-edit" class="ui mini pull-right button">edit</button>
-          </h3>
-          <table class="ui compact table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="playlist">
-              <tr>
-                <td colspan="3"> nothing here yet </td>
-              </tr>
-            </tbody>
-          </table>
-          <h2 class="ui header">
-            Files
-            <div id="video-filepath" class="ui orange label"></div>
-          </h2>
-          <table class="ui very compact table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="files">
-              
-            </tbody>
-          </table>
-        </div>
-        <!-- PLAYLIST COLUMN -->
-        <!-- BACKGROUND COLUMN -->
-        <div class="five wide column">
-          <h3 class="ui header">
-            Photo wall
-          </h3>
-
-          <div class="ui form">
-            <input type="text" id="input-hashtag" value="hccjb" placeholder="hashtag">
-          </div>
-
-          <div class="ui divider"></div>
-
-          <div id="btn-insta-wall" class="ui toggle checkbox">
-            <input type="checkbox">
-            <label>Turn on Instagram Photo Wall</label>
-          </div>
-
-          <h3 class="ui header">
-            Countdown
-          </h3>
-          <div class="ui input">
-            <input id="input-countdown" type="text" placeholder="1710">
-          </div>
-          <div class="ui input">
-            <input id="input-countdown-bottom" type="text" placeholder="countdown#bottom css">
-          </div>
-          <div class="ui divider"></div>
-          <button id="btn-countdown-clear" class="ui button">clear coundown</button>
-          <h3 class="ui header hidden">
-            Background
-            <button id="btn-background-edit" class="ui mini pull-right button">edit</button>
-          </h3>
-          <table class="ui compact table hidden">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="background">
-              <tr>
-                <td colspan="3"> nothing here yet </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- CONTROL COLUMN -->
-
-        <div class="five wide column">
-          <h2 class="ui header">Showing</h2>
-          <div id="preview-container">
-            <video id="preview" style="width: 100%" muted="muted" src=""></video>
-          </div>
-          <select id="show-screen" class="ui fluid dropdown"></select>
-          <div class="ui fluid huge buttons">
-            <button id="btn-detect" class="ui basic button"><i class="magnet icon"></i></button>
-            <button id="btn-toggle-show" class="ui black button"><i class="hide icon"></i></button>
-          </div>
-
-        </div>
+  <body class="d-flex">
+    <div id="list">
+      <div id="service">
+        <div class="zz-table-title">Service OOS</div>
+        <select id="select-service" class="ui fluid dropdown">
+          <option>07/28 4th Anniversary</option>
+        </select>
+      </div>
+      <div id="playlist">
+        <table class="zz-table w-100">
+          <tbody>
+          </tbody>
+        </table>
       </div>
     </div>
+    <div class="sprt"></div>
+    <div id="info" class="flex-fill">
+      <section class="section" data-order="0">
+        <h1 class="zz-h1"> <i class="cloud icon"></i> You are mine <span class="ui mini grey label">Default</span> </h1>
+        <ul class="sectionate">
+          <li>
+            <span>Intro</span>
+            <ul>
+              <li><i class="ellipsis horizontal icon"></i></li>
+            </ul>
+          </li>
+          <li>
+            <span>Verse</span>
+            <ul>
+              <li>你是我 所有一切 <br> You are my everything</li>
+              <li class="active">You are my hope <br> 我的希望 </li>
+              <li>Now and forever, I will sing <br> 从今到永远 我会唱</li>
+              <li>You are mine</li>
+            </ul>
+          </li>
+          <li>
+            <span>Chorus</span>
+            <ul>
+              <li>Now that the stars have found their place <br>夜空因你众星点缀</li>
+              <li>Even the sun will bring your praise <br> 连太阳都献上赞美</li>
+              <li>Heavenly lights will shine for you <br> 天堂的光为你闪耀</li>
+              <li>And when I am lost you are my way <br> 而当我迷失你引领我</li>
+              <li>Jesus, my everlasting strength <br> 耶稣 我永远的力量</li>
+              <li>You are mine, you are mine</li>
+            </ul>
+          </li>
+          <li>
+            <span>Bridge</span>
+            <ul>
+              <li>You are my hope, you are mine</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </div>
 
+    <div class="sprt"></div>
+    <div id="side">
+      <div id="preview">
+      </div>
+      <div class="d-flex">
+        <div class="ui icon buttons">
+          <button id="btn-cast" class="ui inverted button"><i class="hide icon"></i></button>
+          <button class="ui button"><i class="volume off icon"></i></button>
+        </div>
+        <select id="select-screen" class="ui fluid dropdown">
+          <option> Primary Screen : 1920 &times; 1080 </option>
+          <option> Secondary Screen : 1920 &times; 1080 </option>
+        </select>
+        <button id="btn-detect-screen" class="ui icon button">
+          <i class="refresh icon"></i>
+        </button>
+      </div>
+      <div id="control">
+        <h1 class="zz-h1">Screen Overlays Animation</h1>
+        <div class="ui buttons">
+          <button class="ui button">Flash (w)</button>
+          <button class="ui button">Blackout (b)</button>
+          <button class="ui button">Invert (x)</button>
+          <button class="ui button">Mono (m)</button>
+        </div>
+        <h1 class="zz-h1">Text Effect Animation</h1>
+        <div class="ui buttons">
+          <button class="ui button">NeonGrow</button>
+          <button class="ui button">ElasticBounce</button>
+          <button class="ui button">Shake</button>
+          <button class="ui button">Flickering</button>
+          <button class="ui button">GlowingFlickerNeon</button>
+          <button class="ui button">SpawnZoomOut</button>
+          <button class="ui button">Gliched</button>
+        </div>
+        <h1 class="zz-h1">CountDown</h1>
+        <h1 class="zz-h1">PhotoWall</h1>
+      </div>
+    </div>
   </body>
 </html>

@@ -18,13 +18,13 @@
   },
   "homepage": "https://github.com/ns17diploma/electron-video-player#readme",
   "devDependencies": {
+  },
+  "dependencies": {
     "electron": "^1.7.9",
     "freewall": "^1.0.8",
     "jquery": "^3.2.1",
     "jquery.marquee": "^1.5.0",
-    "promise": "^8.0.1"
-  },
-  "dependencies": {
+    "promise": "^8.0.1",
     "jsonfile": "^4.0.0",
     "semantic-ui": "^2.2.13"
   }

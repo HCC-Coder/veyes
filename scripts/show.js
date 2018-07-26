@@ -2,6 +2,10 @@ const ipcRenderer = require('electron').ipcRenderer
 const $ = require('jquery')
 const jQuery = $;
 
+const DocumentManager = require('./scripts/managers/DocumentManager.js');
+const ThemeManager = require('./scripts/managers/ThemeManager.js');
+const StageManager = require('./scripts/managers/StageManager.js');
+
 const CountdownUtility = require('./scripts/managers/CountdownUtility.js');
 const countdownUtility = new CountdownUtility();
 var countdownTimeInterval = null;
@@ -9,6 +13,43 @@ var countdownTimeInterval = null;
 const Freewall = require('freewall').Freewall;
 require('promise');
 require('jquery.marquee');
+
+var mgs = {}
+$(function(){
+  let dm = new DocumentManager(mgs)
+  mgs.dm = dm;
+  let tm = new ThemeManager(mgs)
+  mgs.tm = tm;
+  let sm = new StageManager(mgs)
+  mgs.sm = sm;
+
+});
+
+ipcRenderer.on('slide', (event, message) => {
+  mgs.sm.setTheme(message.theme);
+  $('.line1').text(message.lines[0])
+  $('.line2').text(message.lines[1])
+})
+
+ipcRenderer.on('fx-mono', (event, message) => {
+  $('#fx-mono').toggle();
+})
+ipcRenderer.on('fx-invert', (event, message) => {
+  $('#fx-invert').toggle();
+})
+ipcRenderer.on('fx-flash', (event, message) => {
+  $('#fx-flash').show();
+})
+ipcRenderer.on('fx-blackout', (event, message) => {
+  $('#fx-blackout').show();
+})
+ipcRenderer.on('fx-flash-clear', (event, message) => {
+  $('#fx-flash').hide();
+})
+ipcRenderer.on('fx-blackout-clear', (event, message) => {
+  $('#fx-blackout').hide();
+})
+
 
 ipcRenderer.on('play', (event, message) => {
   $('#player').attr('src', message).show()

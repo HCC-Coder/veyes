@@ -27,16 +27,16 @@ class ShowManager{
 
     this._show_window = electron.remote.getCurrentWindow().obj_wins.show;
 
-    $('#btn-toggle-show').click(function(){
+    $('#btn-cast').click(function(){
       var btn = $(this);
       var btn_icon = $(this).children('.icon');
       if(btn_icon.hasClass('unhide')) {
         btn_icon.removeClass('unhide').addClass('hide')
-        btn.addClass('black').removeClass('red')
+        btn.removeClass('active')
         that.hide_show()
       } else {
         btn_icon.removeClass('hide').addClass('unhide')
-        btn.addClass('red').removeClass('black')
+        btn.addClass('active')
         that.start_show()
       }
     });
@@ -106,23 +106,39 @@ class ShowManager{
     const eScreen = electron.screen
     this._displays = eScreen.getAllDisplays().reverse()
 
-    $('#show-screen').html('');
+    $('#select-screen').html('');
     for (let i in this._displays) {
       let option_html = `<option value="${i}"> ${this._displays.length-i}. ${this._displays[i].size.width} x ${this._displays[i].size.height} </option>`
-      $('#show-screen').append(option_html)
+      $('#select-screen').append(option_html)
     }
   }
 
   init_ui_event()
   {
     var that = this;
-    $('#btn-detect').click(function(){
+    $('#btn-detect-screen').click(function(){
       that.detect_screen()
     })
 
-    $('#show-screen').change(function(){
+    $('#select-screen').change(function(){
       that._choose_screen_id = $(this).val()
       that.resize_preview()
+    })
+
+    $(window).keydown(function(e){
+      console.log(e.which);
+      switch(e.which) {
+        case 87: that._show_window.webContents.send('fx-flash'); break;
+        case 66: that._show_window.webContents.send('fx-blackout'); break;
+        case 88: that._show_window.webContents.send('fx-invert'); break;
+        case 77: that._show_window.webContents.send('fx-mono'); break;
+      }
+    })
+    $(window).keyup(function(e){
+      switch(e.which) {
+        case 87: that._show_window.webContents.send('fx-flash-clear'); break;
+        case 66: that._show_window.webContents.send('fx-blackout-clear'); break;
+      }
     })
   }
 }

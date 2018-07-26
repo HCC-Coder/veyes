@@ -33,3 +33,34 @@ body {
   left: 50%;
   transform: translate(-50%,-50%);
 }
+
+#fx-invert{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: white;
+  z-index: 1000;
+  mix-blend-mode: difference;
+  display: none;
+}
+#fx-mono{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: black;
+  z-index: 1000;
+  mix-blend-mode: color;
+  display: none;
+}
+#fx-blackout{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: black;
+  z-index: 1000;
+  display: none;
+}
+#fx-flash{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: white;
+  z-index: 1000;
+  display: none;
+}

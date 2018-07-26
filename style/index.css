@@ -15,13 +15,9 @@
     overflow: hidden;
 }
 
-.hidden {
-    display: none;
-}
 #preview-container video {
     /* Make video to at least 100% wide and tall */
     min-width: 100%; 
-    // min-height: 100%; 
     
     /* Setting width & height to auto prevents the browser from stretching or squishing the video */
     width: auto;
@@ -34,6 +30,13 @@
     transform: translate(-50%,-50%);
 }
 
-#veyes-container {
-    min-width: 96%;
+#list {width: 300px; background-color: #393939;}
+#playlist td:first-child,
+#playlist td:nth-child(2),
+#playlist td:last-child{
+  width: 30px;
 }
+#info {background-color: #403f3b; height: 100vh; overflow: scroll;}
+#side {width: 480px;}
+#preview {width: 320px; height: 180px; background-color: black;}
+#preview {width: 480px; height: 270px; background-color: black;}

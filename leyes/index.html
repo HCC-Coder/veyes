@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Veyes-Editor</title>
+  <style>
+    #list {
+      position: relative;
+      width: 340px;
+      background-color: #393939;
+    }
+    #list-action {
+      position: absolute; bottom: 0;
+    }
+    #oos {
+      width: 340px;
+      position: relative;
+      background-color: #393939;
+    }
+    #oos-action {
+      position: absolute; bottom: 0;
+    }
+    #playlist td:first-child,
+    #playlist td:nth-child(3),
+    #playlist td:last-child{
+      width: 30px;
+    }
+  </style>
+<link href="index.css" rel="stylesheet"></head>
+<body class="d-flex">
+  <div id="list">
+    <div id="service">
+      <div class="zz-table-title d-flex justify-content-between">
+        <i class="left arrow icon"></i>
+        <span>July 2018 Services</span>
+        <i class="right arrow icon"></i>
+      </div>
+    </div>
+    <div id="playlist">
+      <table class="zz-table w-100">
+        <thead>
+          <tr>
+            <th><i class="calendar icon"></i></th>
+            <th>Topic</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2/7</td>
+            <td>Transfiguration</td>
+            <td><i class="pencil icon"></i></td>
+            <td><i class="trash icon"></i></td>
+          </tr>
+          <tr>
+            <td>9/7</td>
+            <td>Vision Day</td>
+            <td><i class="pencil icon"></i></td>
+            <td><i class="trash icon"></i></td>
+          </tr>
+          <tr>
+            <td>15/7</td>
+            <td>Camp S1</td>
+            <td><i class="pencil icon"></i></td>
+            <td><i class="trash icon"></i></td>
+          </tr>
+          <tr class="active">
+            <td>16/7</td>
+            <td>Camp S2</td>
+            <td><i class="pencil icon"></i></td>
+            <td><i class="trash icon"></i></td>
+          </tr>
+          <tr>
+            <td>16/7</td>
+            <td>Camp S3</td>
+            <td><i class="pencil icon"></i></td>
+            <td><i class="trash icon"></i></td>
+          </tr>
+          <tr>
+            <td>22/7</td>
+            <td>4th Anniversary</td>
+            <td><i class="pencil icon"></i></td>
+            <td><i class="trash icon"></i></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div id="list-action" class="ui fluid buttons">
+      <button class="ui icon button">
+        <i class="add icon"></i>
+      </button>
+      <button class="ui icon button">
+        <i class="pencil icon"></i>
+      </button>
+    </div>
+  </div>
+  <div class="sprt"></div>
+  <div id="oos" class="flex-fill">
+    <div class="zz-table-title d-flex justify-content-between">
+      <i class="left arrow icon"></i>
+      <span>18-07-16 [Camp S2]</span>
+      <i class="right arrow icon"></i>
+    </div>
+    <table class="zz-table w-100">
+      <thead>
+        <tr>
+          <th>Seq</th>
+          <th>Type</th>
+          <th></th>
+          <th>Theme</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1.</td>
+          <td><i class="cloud icon"></i></td>
+          <td>Back to you</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2.</td>
+          <td><i class="video icon"></i></td>
+          <td>Camp Adv</td>
+          <td><i class="play icon"></i></td>
+        </tr>
+        <tr>
+          <td>3.</td>
+          <td><i class="cloud icon"></i></td>
+          <td>Where you are</td>
+          <td></td>
+        </tr>
+        <tr class="active">
+          <td>4.</td>
+          <td><i class="cloud icon"></i></td>
+          <td>You are mine</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5.</td>
+          <td><i class="image icon"></i></td>
+          <td>Welcome</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6.</td>
+          <td><i class="book icon"></i></td>
+          <td>Isaiah 3 : 14, 15</td>
+          <td></td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div id="oos-action" class="ui fluid buttons">
+      <button class="ui icon button">
+        <i class="add icon"></i>
+      </button>
+      <button class="ui icon button">
+        <i class="pencil icon"></i>
+      </button>
+    </div>
+  </div>
+  <div class="sprt"></div>
+  <div id="side">
+    <div id="preview">
+    </div>
+    <div class="d-flex">
+      <div class="ui icon buttons">
+        <button id="btn-cast" class="ui active inverted button"><i class="eye icon"></i></button>
+        <button class="ui button"><i class="volume off icon"></i></button>
+      </div>
+      <select class="ui fluid dropdown">
+        <option> Primary Screen : 1920 &times; 1080 </option>
+        <option> Secondary Screen : 1920 &times; 1080 </option>
+      </select>
+      <button class="ui icon button">
+        <i class="refresh icon"></i>
+      </button>
+    </div>
+    <div id="control">
+      <h1 class="zz-h1">Screen Overlays Animation</h1>
+      <div class="ui buttons">
+        <button class="ui button">Flash</button>
+        <button class="ui button">Blackout</button>
+      </div>
+      <h1 class="zz-h1">Text Effect Animation</h1>
+      <div class="ui buttons">
+        <button class="ui button">NeonGrow</button>
+        <button class="ui button">ElasticBounce</button>
+        <button class="ui button">Shake</button>
+        <button class="ui button">Flickering</button>
+        <button class="ui button">GlowingFlickerNeon</button>
+        <button class="ui button">SpawnZoomOut</button>
+        <button class="ui button">Gliched</button>
+      </div>
+      <h1 class="zz-h1">CountDown</h1>
+      <h1 class="zz-h1">PhotoWall</h1>
+    </div>
+  </div>
+<script type="text/javascript" src="index.js"></script></body>
+</html>
