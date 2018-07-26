@@ -36,7 +36,7 @@
 #playlist td:last-child{
   width: 30px;
 }
-#info {background-color: #403f3b; height: 100vh; overflow: scroll;}
+#info {background-color: #403f3b; height: 100vh; overflow: scroll; padding-bottom: 800px;}
 #side {width: 480px;}
 #preview {width: 320px; height: 180px; background-color: black;}
 #preview {width: 480px; height: 270px; background-color: black;}

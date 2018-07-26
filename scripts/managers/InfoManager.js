@@ -18,7 +18,6 @@ class InfoManager{
 
     this._show_window = electron.remote.getCurrentWindow().obj_wins.show;
 
-
     this.init_event()
   }
 
@@ -85,26 +84,6 @@ class InfoManager{
       $(this).children('.action').html('<i class="play icon"></i>');
       $('#playlist tr.item').removeClass('attention');
       $(this).addClass('attention');
-    });
-
-    $('#info li.item').click(function(){
-      $('#info li.item').removeClass('active');
-      $(this).addClass('active');
-      let order = $(this).closest('section').data('order');
-      let line_order = $(this).data('line-order');
-
-      let theme = that.theme_content[order].slides[0];
-      if (typeof that.theme_content[order].slides[line_order] != 'undefined') {
-        theme = that.theme_content[order].slides[line_order];
-      }
-
-      let content = {
-        "lines":$(this).data('lines').split(','),
-        "theme":theme,
-        "order":order,
-        "line-order":line_order
-      };
-      that._show_window.webContents.send('slide', content)
     });
   }
 }
