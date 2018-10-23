@@ -24,43 +24,6 @@
     </div>
     <div class="sprt"></div>
     <div id="info" class="flex-fill">
-      <section class="section" data-order="0">
-        <h1 class="zz-h1"> <i class="cloud icon"></i> You are mine <span class="ui mini grey label">Default</span> </h1>
-        <ul class="sectionate">
-          <li>
-            <span>Intro</span>
-            <ul>
-              <li><i class="ellipsis horizontal icon"></i></li>
-            </ul>
-          </li>
-          <li>
-            <span>Verse</span>
-            <ul>
-              <li>你是我 所有一切 <br> You are my everything</li>
-              <li class="active">You are my hope <br> 我的希望 </li>
-              <li>Now and forever, I will sing <br> 从今到永远 我会唱</li>
-              <li>You are mine</li>
-            </ul>
-          </li>
-          <li>
-            <span>Chorus</span>
-            <ul>
-              <li>Now that the stars have found their place <br>夜空因你众星点缀</li>
-              <li>Even the sun will bring your praise <br> 连太阳都献上赞美</li>
-              <li>Heavenly lights will shine for you <br> 天堂的光为你闪耀</li>
-              <li>And when I am lost you are my way <br> 而当我迷失你引领我</li>
-              <li>Jesus, my everlasting strength <br> 耶稣 我永远的力量</li>
-              <li>You are mine, you are mine</li>
-            </ul>
-          </li>
-          <li>
-            <span>Bridge</span>
-            <ul>
-              <li>You are my hope, you are mine</li>
-            </ul>
-          </li>
-        </ul>
-      </section>
     </div>
 
     <div class="sprt"></div>
@@ -88,6 +51,21 @@
           <button class="ui button">Invert (x)</button>
           <button class="ui button">Mono (m)</button>
         </div>
+        <h1 class="zz-h1">Overlay Mode</h1>
+        <div class="ui buttons">
+          <button class="ui button btn-overlay-mode" data-mode="multiply">Multiply</button>
+          <button class="ui button btn-overlay-mode" data-mode="screen">Screen</button>
+          <button class="ui button btn-overlay-mode" data-mode="overlay">Overlay</button>
+          <button class="ui button btn-overlay-mode" data-mode="lighten">Lighten</button>
+          <button class="ui button btn-overlay-mode" data-mode="color-dodge">Color Dodge</button>
+        </div>
+        <div class="ui buttons">
+          <button class="ui button btn-overlay-mode" data-mode="color-burn">Color Burn</button>
+          <button class="ui button btn-overlay-mode" data-mode="hard-light">Hard Light</button>
+          <button class="ui button btn-overlay-mode" data-mode="soft-light">Soft Light</button>
+          <button class="ui button btn-overlay-mode" data-mode="difference">Difference</button>
+        </div>
+
         <h1 class="zz-h1">Text Effect Animation</h1>
         <div class="ui buttons">
           <button class="ui button">NeonGrow</button>
@@ -99,7 +77,21 @@
           <button class="ui button">Gliched</button>
         </div>
         <h1 class="zz-h1">CountDown</h1>
+        <div class="ui input">
+          <input id="input-countdown" type="text" placeholder="1710">
+        </div>
+        <div class="ui input">
+          <input id="input-countdown-bottom" type="text" placeholder="countdown#bottom css">
+        </div>
         <h1 class="zz-h1">PhotoWall</h1>
+        <div class="ui form">
+          <input type="text" id="input-hashtag" value="oasisjb" placeholder="hashtag">
+        </div>
+        <div id="btn-insta-wall" class="ui toggle checkbox">
+          <input type="checkbox">
+          <label>Turn on Instagram Photo Wall</label>
+        </div>
+
       </div>
     </div>
   </body>

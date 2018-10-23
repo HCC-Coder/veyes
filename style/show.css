@@ -9,7 +9,13 @@ body {
     height: 100vh;
 }
 
-#video-player-container{
+#themes-container .theme{
+  display: none;
+}
+
+#video-player-container,
+.overlay-video
+{
   position: absolute;
   top: 0;
   bottom: 0;
@@ -17,11 +23,13 @@ body {
   height: 100%; 
   overflow: hidden;
 }
-
-#player {
+#overlay-video{
+  transition: mix-blend-mode 1s;
+}
+#image-player, #player, #overlay-video
+{
   /* Make video to at least 100% wide and tall */
   min-width: 100%; 
-  // min-height: 100%; 
   
   /* Setting width & height to auto prevents the browser from stretching or squishing the video */
   width: 100%;
@@ -63,4 +71,7 @@ body {
   background-color: white;
   z-index: 1000;
   display: none;
+}
+#overlay-video{
+  mix-blend-mode: overlay;
 }

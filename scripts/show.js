@@ -25,10 +25,38 @@ $(function(){
 
 });
 
+ipcRenderer.on('PW-unload', (event, message) => {
+  $('.line').text('')
+  $('.theme .loop').hide();
+  $('.theme .loop').each(function() {
+    $(this).get(0).pause();
+  });
+})
+
+ipcRenderer.on('PW-unload-line', (event, message) => {
+  $('.line').text('').hide()
+})
+
 ipcRenderer.on('slide', (event, message) => {
+  $('.theme .loop').each(function() {
+    $(this).get(0).pause();
+  });
+
+
+  $('#'+message.theme+' .loop').show();
+  $('#'+message.theme+' .loop').each(function() {
+    $(this).get(0).play();
+  });
+
   mgs.sm.setTheme(message.theme);
-  $('.line1').text(message.lines[0])
-  $('.line2').text(message.lines[1])
+  for(var i in message.lines) {
+    let j = parseInt(i)+1;
+    if (message.lines[i]) {
+      $('.line'+j).html(message.lines[i]).show()
+    } else {
+      $('.line'+j).hide()
+    }
+  }
 })
 
 ipcRenderer.on('fx-mono', (event, message) => {
@@ -50,13 +78,46 @@ ipcRenderer.on('fx-blackout-clear', (event, message) => {
   $('#fx-blackout').hide();
 })
 
-
-ipcRenderer.on('play', (event, message) => {
-  $('#player').attr('src', message).show()
-  $('#player')[0].play()
+ipcRenderer.on('overlay-mode', (event, message) => {
+  $('#overlay-video').css({'mix-blend-mode': message});
 })
 
-ipcRenderer.on('stop', (event, message) => {
+ipcRenderer.on('overlay', (event, message) => {
+  let path = mgs.dm.document_path +'/backdrop/overlay'+ message + '.mp4';
+  $('#overlay-video').attr('src', path);
+  $('#overlay').show();
+})
+
+ipcRenderer.on('overlay-clear', (event, message) => {
+  $('#overlay-video').attr('src', '');
+  $('#overlay').hide();
+})
+
+ipcRenderer.on('image-load', (event, message) => {
+  $('#image-player').attr('src', message).show()
+})
+ipcRenderer.on('image-unload', (event, message) => {
+  $('#image-player').attr('src', '').hide()
+})
+
+ipcRenderer.on('video-load', (event, message) => {
+  $('#player').attr('src', message).show()
+})
+ipcRenderer.on('video-play', (event, message) => {
+  $('#player')[0].play()
+})
+ipcRenderer.on('video-stop', (event, message) => {
+  $('#player')[0].currentTime = 0;
+  $('#player')[0].pause()
+})
+ipcRenderer.on('video-loop', (event, message) => {
+  if ($('#player').prop('loop')) {
+    $('#player').prop('loop', false);
+  } else {
+    $('#player').prop('loop', true);
+  }
+})
+ipcRenderer.on('video-unload', (event, message) => {
   $('#player').attr('src', '').hide()
 })
 

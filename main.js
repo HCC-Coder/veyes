@@ -52,7 +52,7 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
-  // obj_wins.show.webContents.openDevTools()
+  obj_wins.show.webContents.openDevTools()
 
   obj_wins.show.on('closed', () => {
     obj_wins.show = null

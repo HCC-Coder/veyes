@@ -14,11 +14,79 @@ class InfoManager{
       if (info_content[i].type == "PW") {
         this.add_pw(info_content[i]);
       }
+      if (info_content[i].type == "VIDEO") {
+        this.add_video(info_content[i]);
+      }
+      if (info_content[i].type == "IMAGE") {
+        this.add_image(info_content[i]);
+      }
     }
 
     this._show_window = electron.remote.getCurrentWindow().obj_wins.show;
 
     this.init_event()
+  }
+
+  add_video(content){
+    let items_html = '';
+    for(var i in content.files) {
+      let file = content.files[i];
+      items_html += `
+      <li class="d-flex justify-content-between item" data-content="${file}">
+        <span>${file}</span>
+        <div class="ui icon buttons">
+          <button class="ui button"><i class="play icon"></i></button> 
+          <button class="ui button"><i class="stop icon"></i></button> 
+        </div>
+      </li>
+      `;
+    }
+    let sectionates_html = `<li>
+      <ul>
+        ${items_html}
+      </ul>
+    </li>`;
+    let row_html = `
+      <section id="info-s${content.order}" class="section" data-type="VIDEO" data-order="${content.order}">
+        <h1 class="zz-h1"> <i class="video icon"></i> ${content.title} </h1>
+        <ul class="sectionate">
+          ${sectionates_html}
+        </ul>
+      </section>
+    `;
+
+    $('#info').append(row_html);
+  }
+  add_image(content){
+    let items_html = '';
+    for(var i in content.files) {
+      let file = content.files[i];
+      items_html += `
+      <li class="d-flex justify-content-between item" data-content="${file}">
+        <span>${file}</span>
+        <div class="ui icon buttons">
+          <button class="ui button"><i class="hide icon"></i></button> 
+          <button class="ui button"><i class="unhide icon"></i></button> 
+        </div>
+      </li>
+      `;
+    }
+
+    let sectionates_html = `<li>
+      <ul>
+        ${items_html}
+      </ul>
+    </li>`;
+    let row_html = `
+      <section id="info-s${content.order}" class="section" data-type="IMAGE" data-order="${content.order}">
+        <h1 class="zz-h1"> <i class="image icon"></i> ${content.title} </h1>
+        <ul class="sectionate">
+          ${sectionates_html}
+        </ul>
+      </section>
+    `;
+
+    $('#info').append(row_html);
   }
 
   add_pw(content_pw)
@@ -35,7 +103,7 @@ class InfoManager{
     }
 
     let row_html = `
-      <section id="info-s${content_pw.order}" class="section" data-order="${content_pw.order}">
+      <section id="info-s${content_pw.order}" class="section" data-type="PW" data-order="${content_pw.order}">
         <h1 class="zz-h1"> <i class="cloud icon"></i> ${content_pw.title} <span class="ui mini grey label">Default</span> </h1>
         <ul class="sectionate">
           ${sectionates_html}

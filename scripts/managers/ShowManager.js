@@ -140,29 +140,49 @@ class ShowManager{
 
   activate_slide()
   {
-    let target_slide = $('#info .item').eq(this.showing_slide_index);
-
     $('#info .item').removeClass('active');
+
+    let target_slide = $('#info .item').eq(this.showing_slide_index);
     target_slide.addClass('active');
-    this.refocus_info();
 
 
-    let order = target_slide.closest('section').data('order')-1;
-    let line_order = target_slide.data('line-order');
+    let target_section = target_slide.closest('section');
 
-    console.log(order, line_order);
-    let theme = this.mgs.im.theme_content[order].slides[0];
-    if (typeof this.mgs.im.theme_content[order].slides[line_order] != 'undefined') {
-      theme = this.mgs.im.theme_content[order].slides[line_order];
+    this._show_window.webContents.send('video-unload')
+    this._show_window.webContents.send('image-unload')
+
+    if (target_section.data('type') == 'VIDEO') {
+      this._show_window.webContents.send('PW-unload')
+      this._show_window.webContents.send('video-load', path.resolve(this.mgs.dm.document_path, 'videos/'+target_slide.data('content')))
+    }
+    if (target_section.data('type') == 'IMAGE') {
+      this._show_window.webContents.send('PW-unload')
+      this._show_window.webContents.send('image-load', path.resolve(this.mgs.dm.document_path, 'images/'+target_slide.data('content')))
     }
 
-    let content = {
-      "lines":target_slide.data('lines').split(','),
-      "theme":theme,
-      "order":order,
-      "line-order":line_order
-    };
-    this._show_window.webContents.send('slide', content)
+    if (target_section.data('type') == 'PW') {
+
+      let order = target_section.data('order');
+      let line_order = target_slide.data('line-order');
+      console.info('order:'+order, 'line_order:'+line_order);
+
+      if (typeof this.mgs.im.theme_content[order] != 'undefined') {
+        let theme = this.mgs.im.theme_content[order].slides[0];
+        if (typeof this.mgs.im.theme_content[order].slides[line_order] != 'undefined') {
+          theme = this.mgs.im.theme_content[order].slides[line_order];
+        }
+        let content = {
+          "lines":target_slide.data('lines').split(','),
+          "theme":theme,
+          "order":order,
+          "line-order":line_order
+        };
+        this._show_window.webContents.send('slide', content)
+      }
+    }
+
+    this.refocus_info();
+
   }
 
   refocus_info()
@@ -184,25 +204,42 @@ class ShowManager{
       that._choose_screen_id = $(this).val()
       that.resize_preview()
     })
+    $('.btn-overlay-mode').click(function(){
+      that._show_window.webContents.send('overlay-mode', $(this).data('mode'));
+    });
 
     $(window).keydown(function(e){
-      console.log(e.which);
+      console.log('key:'+e.which);
       switch(e.which) {
+        case 8: that._show_window.webContents.send('PW-unload-line'); break; // backspace
         case 38: that.goto_previous_slide(); break; // up
         case 40: that.goto_next_slide(); break; // down
-        case 37: that.goto_previous_slide(); break; // left
-        case 39: that.goto_next_slide(); break; // right
-        case 87: that._show_window.webContents.send('fx-flash'); break;
-        case 66: that._show_window.webContents.send('fx-blackout'); break;
-        case 88: that._show_window.webContents.send('fx-invert'); break;
-        case 77: that._show_window.webContents.send('fx-mono'); break;
+        case 37: that._show_window.webContents.send('video-stop'); break; // left
+        case 39: that._show_window.webContents.send('video-play'); break; // right
+        case 87: that._show_window.webContents.send('fx-flash'); break; // w
+        case 66: that._show_window.webContents.send('fx-blackout'); break; // b
+        case 88: that._show_window.webContents.send('fx-invert'); break; // x
+        case 77: that._show_window.webContents.send('fx-mono'); break; // m
+
+        case 48: that._show_window.webContents.send('overlay-clear'); break; //0
+        case 49: that._show_window.webContents.send('overlay', '01'); break; //1
+        case 50: that._show_window.webContents.send('overlay', '02'); break; //2
+        case 51: that._show_window.webContents.send('overlay', '03'); break; //3
+        case 52: that._show_window.webContents.send('overlay', '04'); break; //4
+        case 53: that._show_window.webContents.send('overlay', '05'); break; //5
+        case 54: that._show_window.webContents.send('overlay', '06'); break; //6
+        case 55: that._show_window.webContents.send('overlay', '07'); break; //7
+        case 56: that._show_window.webContents.send('overlay', '08'); break; //8
+        case 57: that._show_window.webContents.send('overlay', '09'); break; //9
+
+        case 76: that._show_window.webContents.send('video-loop'); break; // l
       }
     })
     $(window).keyup(function(e){
       switch(e.which) {
         case 87: that._show_window.webContents.send('fx-flash-clear'); break;
         case 66: that._show_window.webContents.send('fx-blackout-clear'); break;
-      }
+       }
     })
 
     $('#info li.item').click(function(){

@@ -29,7 +29,12 @@ class PlaylistManager{
 
   cast_type_icon(type)
   {
-    return {'PW':'cloud','Video':'video','Image':'image','Verse':'book'}[type];
+    return {
+      'PW':'cloud',
+      'VIDEO':'video',
+      'IMAGE':'image',
+      'BIBLE':'book'
+    }[type];
   }
 
   init_event()

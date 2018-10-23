@@ -279,7 +279,7 @@ $column_number = 6;
 
     // animation
     setInterval(function(){
-      var target = $('img').not('.animated').not('.notanimate').random()
+      var target = $('#insta-gallery img').not('.animated').not('.notanimate').random()
       target.addClass('animated');
       setTimeout(function(){
         target.removeClass('animated');
